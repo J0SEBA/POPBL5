@@ -1,0 +1,23 @@
+header{
+	display: flex;
+	grid-template-areas:
+	"title"
+	"options"
+	"nav";
+	
+	width: 100%;
+	background-color:black;
+	border-bottom:4px solid red;
+	color:white;
+}
+
+header>img{
+	align-content:left;
+	heigth:2.5rem;
+}
+
+header>h2{
+	align-content:center;
+	font-size:2rem;
+	font-wight:bold;
+}
