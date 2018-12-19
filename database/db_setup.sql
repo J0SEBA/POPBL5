@@ -22,8 +22,9 @@ isManager         boolean
 
 create table vehicles(
 vehicleID  		TINYINT UNSIGNED,
-statee  	VARCHAR(25)     NOT NULL,
-position    VARCHAR(25)     NOT NULL
+statee  	boolean,
+position    VARCHAR(25)     NOT NULL,
+velocity 	decimal(7,2)
 );
 
 create table orders(
@@ -38,18 +39,16 @@ total                decimal(7,2)
 
 
 create table category(
-categoryID  		TINYINT UNSIGNED,
-description  	VARCHAR(25)     NOT NULL
+categoryID  		VARCHAR(25) UNSIGNED
 );
 
 create table product(
 productID               TINYINT UNSIGNED,
-categoryID               TINYINT UNSIGNED,
+categoryID               VARCHAR(25) UNSIGNED,
 description            varchar(25)	 NOT NULL,
 stock            SMALLINT UNSIGNED,
 prize                decimal(7,2),
-warehouseID               TINYINT UNSIGNED,
-isManager         boolean
+warehouseID               TINYINT UNSIGNED
 );
 
 create table orders_product(
