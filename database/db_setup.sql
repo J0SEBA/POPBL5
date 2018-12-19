@@ -7,7 +7,7 @@ userID               TINYINT UNSIGNED,
 name            varchar(25)	 NOT NULL,
 surname            varchar(25)	 NOT NULL,
 userName            varchar(25)	 NOT NULL,
-email            varchar(25)	 NOT NULL,
+email            varchar(50)	 NOT NULL,
 password               char(9)
 );
 
@@ -39,13 +39,13 @@ total                decimal(7,2)
 
 
 create table category(
-categoryID  		VARCHAR(25) UNSIGNED
+categoryID  		VARCHAR(25)   NOT NULL
 );
 
 create table product(
 productID               TINYINT UNSIGNED,
-categoryID               VARCHAR(25) UNSIGNED,
-description            varchar(25)	 NOT NULL,
+categoryID               VARCHAR(25) NOT NULL,
+description            varchar(35)	 NOT NULL,
 stock            SMALLINT UNSIGNED,
 prize                decimal(7,2),
 warehouseID               TINYINT UNSIGNED
