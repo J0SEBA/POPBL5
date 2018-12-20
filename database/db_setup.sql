@@ -88,5 +88,3 @@ ALTER TABLE orders_product
 	ADD CONSTRAINT PK_orders_product PRIMARY KEY orders_product (orderID,productID),
 	ADD CONSTRAINT FK_orders_product1 FOREIGN KEY  orders_product (orderID) REFERENCES orders (orderID),
 	ADD CONSTRAINT FK_orders_product2 FOREIGN KEY  orders_product (productID) REFERENCES product (productID);
-
-
