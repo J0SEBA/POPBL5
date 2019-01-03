@@ -1,4 +1,4 @@
-INSERT INTO users values (1,'Aitor','Eizmendi','Hulio10','aitor.eizmendi@alumni.mondragon.edu','osasuna');
+﻿INSERT INTO users values (1,'Aitor','Eizmendi','Hulio10','aitor.eizmendi@alumni.mondragon.edu','osasuna');
 INSERT INTO users values (2,'Joseba','Carnicero','Hulio12','joseba.carnicero@alumni.mondragon.edu','osasuna');
 INSERT INTO users values (3,'Marcos','Azcarate','Hulio14','marcos.azcarate@alumni.mondragon.edu','osasuna');
 INSERT INTO warehouseOperator values (1,'Jon','Mugica','ScrumBanBoy','123456789',true);
@@ -12,7 +12,7 @@ INSERT INTO vehicles values (5,null,false,'parking 5',0.00);
 INSERT INTO category values ('Video games');
 INSERT INTO category values ('Cinema, TV and Music');
 
-INSERT INTO category values ('Home, Garden');
+INSERT INTO category values ('Furniture');
 INSERT INTO category values ('Books');
 
 INSERT INTO category values ('Electronics');
@@ -32,9 +32,8 @@ INSERT INTO product values (13,'Cinema, TV and Music','Megalodon','250',14.99,1)
 INSERT INTO product values (14,'Cinema, TV and Music','Rounders','250',14.95,1);
 INSERT INTO product values (15,'Cinema, TV and Music','AC-DC cd','250',17.50,1);
 
-INSERT INTO product values (21,'Home, Garden','Washing machine','220',321.66,2);
-INSERT INTO product values (22,'Home, Garden','Refrigerator','220',47.99,2);
-INSERT INTO product values (23,'Home, Garden','Mower','220',500,2);
+INSERT INTO product values (21,'Furniture','Furniture for TV','220',134.66,2);
+INSERT INTO product values (22,'Furniture','Hoi from library','220',499.99,2);
 INSERT INTO product values (31,'Books','The Assassination of Pythagoras','220',18.90,2);
 INSERT INTO product values (32,'Books','The infinite joke','220',27.99,2);
 INSERT INTO product values (33,'Books','Guinness world records 2019','220',24.60,2);
@@ -42,7 +41,7 @@ INSERT INTO product values (33,'Books','Guinness world records 2019','220',24.60
 INSERT INTO product values (41,'Electronics','Smart TV 50"','220',499.99,3);
 INSERT INTO product values (42,'Electronics','Speakers system','220',99.99,3);
 INSERT INTO product values (43,'Electronics','Optoma H183X - Proyector','220',483.60,3);
-INSERT INTO product values (51,'Computing','Lenovo Yoga 530-14ARR - Port�til','220',585.95,3);
+INSERT INTO product values (51,'Computing','Lenovo Yoga 530-14ARR - Portátil','220',585.95,3);
 INSERT INTO product values (52,'Computing','Samsung Galaxy Tab A - Tablet','220',201.60,3);
 INSERT INTO product values (53,'Computing','Windows 10 Home','220',11.60,3);
 
@@ -51,3 +50,7 @@ INSERT INTO product values (62,'Sports','Game of golf clubs','220',309.00,4);
 INSERT INTO product values (63,'Sports','Osasuna football shirt','220',65.60,4);
 INSERT INTO product values (71,'Fashion','New Balance sneakers','220',75.95,4);
 INSERT INTO product values (72,'Fashion','Ankle boots women','220',99.99,4);
+
+
+
+
