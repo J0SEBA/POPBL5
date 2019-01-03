@@ -3,11 +3,11 @@ INSERT INTO users values (2,'Joseba','Carnicero','Hulio12','joseba.carnicero@alu
 INSERT INTO users values (3,'Marcos','Azcarate','Hulio14','marcos.azcarate@alumni.mondragon.edu','osasuna');
 INSERT INTO warehouseOperator values (1,'Jon','Mugica','ScrumBanBoy','123456789',true);
 
-INSERT INTO vehicles values (1,false,'parking 1',0.00);
-INSERT INTO vehicles values (2,false,'parking 2',0.00);
-INSERT INTO vehicles values (3,false,'parking 3',0.00);
-INSERT INTO vehicles values (4,false,'parking 4',0.00);
-INSERT INTO vehicles values (5,false,'parking 5',0.00);
+INSERT INTO vehicles values (1,null,false,'parking 1',0.00);
+INSERT INTO vehicles values (2,null,false,'parking 2',0.00);
+INSERT INTO vehicles values (3,null,false,'parking 3',0.00);
+INSERT INTO vehicles values (4,null,false,'parking 4',0.00);
+INSERT INTO vehicles values (5,null,false,'parking 5',0.00);
 
 INSERT INTO category values ('Video games');
 INSERT INTO category values ('Cinema, TV and Music');

@@ -20,8 +20,18 @@ password               char(9),
 isManager         boolean
 );
 
+create table product(
+productID               TINYINT UNSIGNED,
+categoryID               VARCHAR(25) NOT NULL,
+description            varchar(35)	 NOT NULL,
+stock            SMALLINT UNSIGNED,
+prize                decimal(7,2),
+warehouseID               TINYINT UNSIGNED
+);
+
 create table vehicles(
 vehicleID  		TINYINT UNSIGNED,
+productID               TINYINT UNSIGNED,
 statee  	boolean,
 position    VARCHAR(25)     NOT NULL,
 velocity 	decimal(7,2)
@@ -30,7 +40,6 @@ velocity 	decimal(7,2)
 create table orders(
 orderID               TINYINT UNSIGNED,
 userID                TINYINT UNSIGNED,
-vehicleID                TINYINT UNSIGNED,
 datee                 date,
 statee             VARCHAR(25)     NOT NULL,
 total                decimal(7,2)
@@ -42,19 +51,13 @@ create table category(
 categoryID  		VARCHAR(25)   NOT NULL
 );
 
-create table product(
-productID               TINYINT UNSIGNED,
-categoryID               VARCHAR(25) NOT NULL,
-description            varchar(35)	 NOT NULL,
-stock            SMALLINT UNSIGNED,
-prize                decimal(7,2),
-warehouseID               TINYINT UNSIGNED
-);
+
 
 create table orders_product(
 orderID  	TINYINT UNSIGNED,
 productID	 		TINYINT UNSIGNED,
 quantity  		SMALLINT UNSIGNED,
+isAssigned           boolean,
 prize                decimal(7,2),
 total                decimal(7,2)
 );
@@ -66,23 +69,23 @@ ALTER TABLE users
 	
 ALTER TABLE warehouseOperator 
 	ADD  CONSTRAINT PK_warehouseOperator PRIMARY KEY warehouseOperator(operatorID);
-	
-ALTER TABLE vehicles 
-	ADD  CONSTRAINT PK_vehicles PRIMARY KEY vehicles(vehicleID);
-	
-ALTER TABLE orders 
-	ADD  CONSTRAINT PK_orders PRIMARY KEY orders(orderID),
-	ADD CONSTRAINT FK_orders1 FOREIGN KEY orders (userID) REFERENCES users(userID),
-	ADD CONSTRAINT FK_orders2 FOREIGN KEY orders (vehicleID) REFERENCES vehicles(vehicleID);
-	
+
 ALTER TABLE category 
 	ADD  CONSTRAINT PK_category PRIMARY KEY category(categoryID);	
-	
 	
 ALTER TABLE product 
 	ADD  CONSTRAINT PK_product PRIMARY KEY product(productID),
 	ADD CONSTRAINT FK_product FOREIGN KEY product (categoryID) REFERENCES category(categoryID);
+
+ALTER TABLE vehicles 
+	ADD  CONSTRAINT PK_vehicles PRIMARY KEY vehicles(vehicleID),
+	ADD  CONSTRAINT FK_vehicles1 FOREIGN KEY vehicles (productID) REFERENCES product(productID);
 	
+ALTER TABLE orders 
+	ADD  CONSTRAINT PK_orders PRIMARY KEY orders(orderID),
+	ADD CONSTRAINT FK_orders1 FOREIGN KEY orders (userID) REFERENCES users(userID);
+	
+
 
 ALTER TABLE orders_product 
 	ADD CONSTRAINT PK_orders_product PRIMARY KEY orders_product (orderID,productID),
