@@ -35,184 +35,119 @@ public class Vehiculo extends Thread{
 		}
 	}
 	
-	
 	@Override
 	public void run() {
 		boolean bool=true;
 		int contador=0;
 		System.out.println(id+" Empiezo en "+actual.self);
 		while(bool) {
-			try {
-				Thread.sleep(50);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			if(actual.self.equals(fin)) {
 				System.out.println(id+"Voy por la "+(++contador));
-				
 				System.out.println(id+" He llegado ha "+ actual.ws.nombre+"--->"+ actual.self);
 				if(!actual.ws.ocupado) {
-					System.out.println(id+" Voy a entrar a "+actual.ws.nombre);
-					try {
-						actual.ws.entry.acquire();
-						actual.ws.ocupado=true;
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					actual.entry.release();
-					try {
-						actual.ws.exit.acquire();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					actual.ws.entry.release();
-					fin=extra;
+					entrarNoOcupado();
 				} else {
-					System.out.println(id+" Voy a hechar al que esta y voy a entrat a "+actual.ws.nombre);
-					actual.ws.exit.release();
-					try {
-						actual.ws.entry.acquire();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					actual.entry.release();
-					try {
-						actual.ws.exit.acquire();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					actual.ws.entry.release();
-					fin=extra;
+					entrarOcupado();
 				}
-				
-				//break;
 			}
 			if(actual.self.getY()==2) {
 				if(actual.self.getX()>=fin.getX()) {
 					if(actual.alt!=null) {
-						boolean done=false;
-						try {
-							done=actual.alt.entry.tryAcquire(1, TimeUnit.NANOSECONDS);
-							System.out.println(done);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						if(done) {
-							Segmento aux=actual;
-							System.out.println(id+" Estoy en "+ actual.self);
-							actual=actual.alt;
-							aux.entry.release();
+						if(tryEnterAlt()) {
+							enterAlt();
 						} else {
 							System.out.println(id+" No he posido entrar a "+actual.alt.self);
-							Segmento aux= actual;
-							System.out.println(id+" Estoy en "+ actual.self);
-							try {
-								actual.next.entry.acquire();
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							actual=actual.next;
-							aux.entry.release();
+							enterNext();
 						}
 					} else {
-						Segmento aux= actual;
-						System.out.println(id+" Estoy en "+ actual.self);
-						try {
-							actual.next.entry.acquire();
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						actual=actual.next;
-						aux.entry.release();
+						enterNext();
 					}
 				} else {
-					Segmento aux= actual;
-					System.out.println(id+" Estoy en "+ actual.self);
-					try {
-						actual.next.entry.acquire();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					actual=actual.next;
-					aux.entry.release();
+					enterNext();
 				}
 			} else if(actual.self.getY()==0) {
 				if(actual.self.getX()<=fin.getX()) {
 					if(actual.alt!=null) {
-						boolean done=false;
-						try {
-							done=actual.alt.entry.tryAcquire(1, TimeUnit.NANOSECONDS);
-							System.out.println(done);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						if(done) {
-							Segmento aux=actual;
-							System.out.println(id+" Estoy en "+ actual.self);
-							actual=actual.alt;
-							aux.entry.release();
+						if(tryEnterAlt()) {
+							enterAlt();
 						} else {
 							System.out.println(id+" No he posido entrar a "+actual.alt.self);
-							Segmento aux= actual;
-							System.out.println(id+" Estoy en "+ actual.self);
-							try {
-								actual.next.entry.acquire();
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							actual=actual.next;
-							aux.entry.release();
+							enterNext();
 						}
-						
-						
 					} else {
-						Segmento aux= actual;
-						System.out.println(id+" Estoy en "+ actual.self);
-						try {
-							actual.next.entry.acquire();
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						actual=actual.next;
-						aux.entry.release();
+						enterNext();
 					}
 				} else {
-					Segmento aux= actual;
-					System.out.println(id+" Estoy en "+ actual.self);
-					try {
-						actual.next.entry.acquire();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					actual=actual.next;
-					aux.entry.release();
+					enterNext();
 				}
 			} else {
-				Segmento aux= actual;
-				System.out.println(id+" Estoy en "+ actual.self);
-				try {
-					actual.next.entry.acquire();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				actual=actual.next;
-				aux.entry.release();
+				enterNext();
 			}
 		}
+	}
+	
+	public void entrarWs() {
+		try {
+			actual.ws.entry.acquire();
+			actual.ws.ocupado=true;
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		actual.entry.release();
+		try {
+			actual.ws.exit.acquire();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		actual.ws.ocupado=false;
+		actual.ws.entry.release();
+		fin=extra;
+	}
+	
+	public void entrarNoOcupado() {
+		System.out.println(id+" Voy a entrar a "+actual.ws.nombre);
+		entrarWs();
+	}
+	
+	public void entrarOcupado() {
+		System.out.println(id+" Voy a hechar al que esta y voy a entrat a "+actual.ws.nombre);
+		actual.ws.exit.release();
+		entrarWs();
+	}
+	
+	public boolean tryEnterAlt() {
+		boolean done=false;
+		try {
+			done=actual.alt.entry.tryAcquire(1, TimeUnit.NANOSECONDS);
+			System.out.println(done);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return done;
+	}
+	
+	public void enterAlt() {
+		Segmento aux=actual;
+		System.out.println(id+" Estoy en "+ actual.self);
+		actual=actual.alt;
+		aux.entry.release();
+	}
+	
+	public void enterNext() {
+		Segmento aux= actual;
+		System.out.println(id+" Estoy en "+ actual.self);
+		try {
+			actual.next.entry.acquire();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		actual=actual.next;
+		aux.entry.release();
 	}
 	
 }

@@ -3,8 +3,13 @@ import java.util.ArrayList;
 
 public class Principal {
 
+	public class Parking{
+		String nombre;
+		boolean ocupado;
+	}
+	
 	ArrayList<Segmento> listaSegmentos =new ArrayList<Segmento>();
-	int i=0;
+	static int i=0;
 	public Principal() throws InterruptedException {
 		init();
 		Vehiculo vehiculo = new Vehiculo(new Point(5,0), new Point(1,2), new Point(5,0), listaSegmentos, 1);
