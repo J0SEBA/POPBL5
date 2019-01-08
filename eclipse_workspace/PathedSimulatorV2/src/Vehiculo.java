@@ -1,5 +1,6 @@
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 public class Vehiculo extends Thread{
@@ -7,16 +8,21 @@ public class Vehiculo extends Thread{
 	Point fin;
 	Point extra;
 	ArrayList<Segmento> listaSegmentos;
+	ArrayList<Segmento> listaSegmentosEscape;
 	Segmento actual;
 	int id;
+	Semaphore selectParking;
+	String estado = "Working";
 	
-	public Vehiculo(Point init, Point fin, Point extra, ArrayList<Segmento> listaSegmentos, int id) throws InterruptedException {
+	public Vehiculo(Point init, Point fin, Point extra, ArrayList<Segmento> listaSegmentos, ArrayList<Segmento> listaSegmentosEscape, int id, Semaphore selectParking) throws InterruptedException {
 		super();
 		this.init = init;
 		this.fin = fin;
 		this.listaSegmentos = listaSegmentos;
 		this.id=id;
 		this.extra=extra;
+		this.selectParking = selectParking;
+		this.listaSegmentosEscape=listaSegmentosEscape;
 		buscarActual();
 	}
 	
@@ -35,6 +41,26 @@ public class Vehiculo extends Thread{
 		}
 	}
 	
+	public void buscarParking() {
+		try {
+			selectParking.acquire();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean buscado=false;
+		for(int i = 0; i<listaSegmentos.size() && buscado==false;i++) {
+			if(listaSegmentos.get(i).ws.nombre.contains("Parking")) {
+				if(!listaSegmentos.get(i).ws.ocupado) {
+					listaSegmentos.get(i).ws.ocupado=true;
+					fin=listaSegmentos.get(i).self;
+					buscado=true;
+				}
+			}
+		}
+		selectParking.release();
+	}
+	
 	@Override
 	public void run() {
 		boolean bool=true;
@@ -42,13 +68,20 @@ public class Vehiculo extends Thread{
 		System.out.println(id+" Empiezo en "+actual.self);
 		while(bool) {
 			if(actual.self.equals(fin)) {
+				
 				System.out.println(id+"Voy por la "+(++contador));
 				System.out.println(id+" He llegado ha "+ actual.ws.nombre+"--->"+ actual.self);
-				if(!actual.ws.ocupado) {
-					entrarNoOcupado();
-				} else {
-					entrarOcupado();
+				if(actual.ws.nombre.contains("Parking")) {
+					entrarParking();
 				}
+				else {
+					if(!actual.ws.ocupado) {
+						entrarNoOcupado();
+					} else {
+						entrarOcupado();
+					}
+				}
+				
 			}
 			if(actual.self.getY()==2) {
 				if(actual.self.getX()>=fin.getX()) {
@@ -86,7 +119,19 @@ public class Vehiculo extends Thread{
 		}
 	}
 	
-	public void entrarWs() {
+	public void entrarParking() {
+		System.out.println("He entrado ha "+actual.ws.nombre);
+		actual.entry.release();
+		try {
+			estado="Sleeping";
+			actual.ws.exit.acquire();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void entrarWs(String s) {
 		try {
 			actual.ws.entry.acquire();
 			actual.ws.ocupado=true;
@@ -94,27 +139,33 @@ public class Vehiculo extends Thread{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		actual.entry.release();
+		if(s.equals("NoOcupado")) {
+			actual.entry.release();
+		}
+		//actual.entry.release();
 		try {
+			estado="Sleeping";
 			actual.ws.exit.acquire();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		actual.ws.ocupado=false;
+		
+		buscarParking();
 		actual.ws.entry.release();
-		fin=extra;
+		
 	}
 	
 	public void entrarNoOcupado() {
 		System.out.println(id+" Voy a entrar a "+actual.ws.nombre);
-		entrarWs();
+		entrarWs(new String("NoOcupado"));
 	}
 	
 	public void entrarOcupado() {
 		System.out.println(id+" Voy a hechar al que esta y voy a entrat a "+actual.ws.nombre);
 		actual.ws.exit.release();
-		entrarWs();
+		entrarWs("");
 	}
 	
 	public boolean tryEnterAlt() {
