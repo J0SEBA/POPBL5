@@ -7,78 +7,6 @@ import java.util.concurrent.TimeUnit;
 public class Vehiculo extends Thread{
 	Point init;
 	Point fin;
-	public Point getInit() {
-		return init;
-	}
-
-	public void setInit(Point init) {
-		this.init = init;
-	}
-
-	public Point getFin() {
-		return fin;
-	}
-
-	public void setFin(Point fin) {
-		this.fin = fin;
-	}
-
-	public Point getExtra() {
-		return extra;
-	}
-
-	public void setExtra(Point extra) {
-		this.extra = extra;
-	}
-
-	public ArrayList<Segmento> getListaSegmentos() {
-		return listaSegmentos;
-	}
-
-	public void setListaSegmentos(ArrayList<Segmento> listaSegmentos) {
-		this.listaSegmentos = listaSegmentos;
-	}
-
-	public ArrayList<Segmento> getListaSegmentosEscape() {
-		return listaSegmentosEscape;
-	}
-
-	public void setListaSegmentosEscape(ArrayList<Segmento> listaSegmentosEscape) {
-		this.listaSegmentosEscape = listaSegmentosEscape;
-	}
-
-	public Segmento getActual() {
-		return actual;
-	}
-
-	public void setActual(Segmento actual) {
-		this.actual = actual;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public Semaphore getSelectParking() {
-		return selectParking;
-	}
-
-	public void setSelectParking(Semaphore selectParking) {
-		this.selectParking = selectParking;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
 	Point extra;
 	ArrayList<Segmento> listaSegmentos;
 	ArrayList<Segmento> listaSegmentosEscape;
@@ -105,7 +33,6 @@ public class Vehiculo extends Thread{
 				actual=listaSegmentos.get(i);
 				try {
 					actual.entry.acquire();
-					
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -127,6 +54,7 @@ public class Vehiculo extends Thread{
 				if(!listaSegmentos.get(i).ws.ocupado) {
 					listaSegmentos.get(i).ws.ocupado=true;
 					fin=listaSegmentos.get(i).self;
+					System.out.println(id+"----Buscado"+fin);
 					buscado=true;
 				}
 			}
@@ -196,7 +124,11 @@ public class Vehiculo extends Thread{
 		System.out.println("He entrado ha "+actual.ws.nombre);
 		actual.entry.release();
 		try {
+			estado="Sleeping";
 			actual.ws.exit.acquire();
+			actual.entry.acquire();
+			actual.ws.ocupado=false;
+			//estado="Working";
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -216,15 +148,20 @@ public class Vehiculo extends Thread{
 		}
 		//actual.entry.release();
 		try {
-			estado="sleeping";
+			Thread.sleep(1000);
+			estado="Sleeping";
 			actual.ws.exit.acquire();
+			//estado="Working";
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		actual.ws.ocupado=false;
-		
-		buscarParking();
+		if(estado.equals("Sleeping")) {			
+			estado="Parking";
+			buscarParking();
+			System.out.println(id+"-------->Voy a parking"+fin);
+		}
 		actual.ws.entry.release();
 		
 	}
@@ -236,6 +173,7 @@ public class Vehiculo extends Thread{
 	
 	public void entrarOcupado() {
 		System.out.println(id+" Voy a hechar al que esta y voy a entrat a "+actual.ws.nombre);
+		
 		actual.ws.exit.release();
 		entrarWs("");
 	}
@@ -244,7 +182,7 @@ public class Vehiculo extends Thread{
 		boolean done=false;
 		try {
 			done=actual.alt.entry.tryAcquire(1, TimeUnit.NANOSECONDS);
-			System.out.println(done);
+			//System.out.println(done);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -271,6 +209,11 @@ public class Vehiculo extends Thread{
 		}
 		actual=actual.next;
 		aux.entry.release();
+	}
+
+	public Point getInit() {
+		// TODO Auto-generated method stub
+		return init;
 	}
 	
 }

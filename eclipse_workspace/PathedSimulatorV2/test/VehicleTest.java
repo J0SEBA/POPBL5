@@ -1,59 +1,28 @@
+package test;
+
+import static org.junit.Assert.assertEquals;
+
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 
-public class Principal {
+import org.junit.Before;
+import org.junit.Test;
 
-	public class Parking{
-		String nombre;
-		boolean ocupado;
-	}
+import main.Segmento;
+import main.Vehiculo;
+import main.Workstation;
+
+public class VehicleTest {
 	
-	ArrayList<Segmento> listaSegmentos =new ArrayList<Segmento>();
+	ArrayList<Segmento> listaSegmentos = new ArrayList<Segmento>();
 	ArrayList<Segmento> listaSegmentosEscape = new ArrayList<Segmento>();
-	ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
-	Semaphore sql = new Semaphore(1);
-	Manager manager = new Manager(listaVehiculos, sql);
-	Producer producer = new Producer(sql);
 	Semaphore selectParking = new Semaphore(1);
-	static int i=0;
-	public Principal() throws InterruptedException {
-		init();
-		Vehiculo vehiculo = new Vehiculo(new Point(3,0), new Point(3,0), new Point(5,0), listaSegmentos, listaSegmentosEscape, 1, selectParking);
-		Vehiculo vehiculo2 = new Vehiculo(new Point(3,2), new Point(3,2), new Point(3,0), listaSegmentos, listaSegmentosEscape, 2, selectParking);
-		Vehiculo vehiculo3 = new Vehiculo(new Point(7,0), new Point(7,0), new Point(7,0), listaSegmentos, listaSegmentosEscape, 3, selectParking);
-		Vehiculo vehiculo4 = new Vehiculo(new Point(7,2), new Point(7,2), new Point(9,0), listaSegmentos, listaSegmentosEscape, 4, selectParking);
-		Vehiculo vehiculo5 = new Vehiculo(new Point(9,2), new Point(9,2), new Point(9,2), listaSegmentos, listaSegmentosEscape, 5, selectParking);
-		
-		listaVehiculos.add(vehiculo);
-		listaVehiculos.add(vehiculo2);
-		listaVehiculos.add(vehiculo3);
-		listaVehiculos.add(vehiculo4);
-		listaVehiculos.add(vehiculo5);
-		
-		/*vehiculo.start();
-		vehiculo2.start();
-		vehiculo3.start();
-		vehiculo4.start();
-		vehiculo5.start();*/
-		
-		producer.start();
-		manager.start();
-		try {
-			vehiculo.join();
-			vehiculo2.join();
-			vehiculo3.join();
-			vehiculo4.join();
-			vehiculo5.join();
-			System.out.println("Todo hecho");
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	Vehiculo vehiculo;
 	
 	
-	public void init() {
+	@Before
+	public void init() throws InterruptedException {
 		listaSegmentos.add(new Segmento(new Point(1,2), new Workstation("WS4")));
 		listaSegmentos.add(new Segmento(new Point(3,2),new Workstation("Parking1")));
 		listaSegmentos.add(new Segmento(new Point(5,2), new Workstation("WS5")));
@@ -121,11 +90,12 @@ public class Principal {
 		listaSegmentosEscape.get(8).next=listaSegmentos.get(9);
 		listaSegmentosEscape.get(9).next=listaSegmentos.get(10);
 		
+		vehiculo = new Vehiculo(new Point(5,0), new Point(1,2), new Point(5,0), listaSegmentos, listaSegmentosEscape, 1, selectParking);
 	}
 	
-	
-	public static void main(String[] args) throws InterruptedException {
-		Principal principal = new Principal();
+	@Test
+	public void testBuscar() throws InterruptedException {
+		//vehiculo.buscarActual();
+		assertEquals("Proba", /*vehiculo.getActual().self*/ new Point(5,0), vehiculo.getInit());
 	}
-
 }

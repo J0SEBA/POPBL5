@@ -1,4 +1,5 @@
 package main;
+
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
@@ -10,19 +11,23 @@ public class Principal {
 		boolean ocupado;
 	}
 	
+
+	
 	ArrayList<Segmento> listaSegmentos =new ArrayList<Segmento>();
 	ArrayList<Segmento> listaSegmentosEscape = new ArrayList<Segmento>();
 	ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
-	Manager manager = new Manager(listaVehiculos);
+	Semaphore sql = new Semaphore(1);
+	Manager manager = new Manager(listaVehiculos, sql, listaSegmentos);
+	Producer producer = new Producer(sql);
 	Semaphore selectParking = new Semaphore(1);
 	static int i=0;
 	public Principal() throws InterruptedException {
 		init();
-		Vehiculo vehiculo = new Vehiculo(new Point(5,0), new Point(1,2), new Point(5,0), listaSegmentos, listaSegmentosEscape, 1, selectParking);
-		Vehiculo vehiculo2 = new Vehiculo(new Point(5,2), new Point(1,2), new Point(3,0), listaSegmentos, listaSegmentosEscape, 2, selectParking);
-		Vehiculo vehiculo3 = new Vehiculo(new Point(1,0), new Point(1,2), new Point(7,0), listaSegmentos, listaSegmentosEscape, 3, selectParking);
-		Vehiculo vehiculo4 = new Vehiculo(new Point(9,0), new Point(1,2), new Point(9,0), listaSegmentos, listaSegmentosEscape, 4, selectParking);
-		Vehiculo vehiculo5 = new Vehiculo(new Point(9,2), new Point(1,2), new Point(9,2), listaSegmentos, listaSegmentosEscape, 5, selectParking);
+		Vehiculo vehiculo = new Vehiculo(new Point(3,0), new Point(3,0), new Point(5,0), listaSegmentos, listaSegmentosEscape, 1, selectParking);
+		Vehiculo vehiculo2 = new Vehiculo(new Point(1,0), new Point(1,0), new Point(3,0), listaSegmentos, listaSegmentosEscape, 2, selectParking);
+		Vehiculo vehiculo3 = new Vehiculo(new Point(7,0), new Point(7,0), new Point(7,0), listaSegmentos, listaSegmentosEscape, 3, selectParking);
+		Vehiculo vehiculo4 = new Vehiculo(new Point(7,2), new Point(7,2), new Point(9,0), listaSegmentos, listaSegmentosEscape, 4, selectParking);
+		Vehiculo vehiculo5 = new Vehiculo(new Point(9,2), new Point(9,2), new Point(9,2), listaSegmentos, listaSegmentosEscape, 5, selectParking);
 		
 		listaVehiculos.add(vehiculo);
 		listaVehiculos.add(vehiculo2);
@@ -36,7 +41,7 @@ public class Principal {
 		vehiculo4.start();
 		vehiculo5.start();
 		
-		
+		producer.start();
 		manager.start();
 		try {
 			vehiculo.join();

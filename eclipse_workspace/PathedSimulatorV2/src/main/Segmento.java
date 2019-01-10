@@ -1,9 +1,10 @@
 package main;
+
 import java.awt.Point;
 import java.util.concurrent.Semaphore;
 
 public class Segmento {
-	public Point self;
+	Point self;
 	public Segmento alt;
 	public Segmento next;
 	boolean ocupado=false;
