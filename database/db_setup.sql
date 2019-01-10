@@ -9,6 +9,8 @@ surname            varchar(25)	 NOT NULL,
 userName            varchar(25)	 NOT NULL,
 email            varchar(50)	 NOT NULL,
 password               char(9),
+gender			varchar(25),
+born_date				date
 PRIMARY KEY(userID)
 );
 
