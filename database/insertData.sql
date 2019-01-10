@@ -1,6 +1,6 @@
-INSERT INTO users values (1,'Aitor','Eizmendi','Hulio10','aitor.eizmendi@alumni.mondragon.edu','osasuna');
-INSERT INTO users values (2,'Joseba','Carnicero','Hulio12','joseba.carnicero@alumni.mondragon.edu','osasuna');
-INSERT INTO users values (3,'Marcos','Azcarate','Hulio14','marcos.azcarate@alumni.mondragon.edu','osasuna');
+INSERT INTO users(name,surname,userName,email,password) values ('Aitor','Eizmendi','Hulio10','aitor.eizmendi@alumni.mondragon.edu','osasuna');
+INSERT INTO users(name,surname,userName,email,password) values ('Joseba','Carnicero','Hulio12','joseba.carnicero@alumni.mondragon.edu','osasuna');
+INSERT INTO users(name,surname,userName,email,password) values ('Marcos','Azcarate','Hulio14','marcos.azcarate@alumni.mondragon.edu','osasuna');
 INSERT INTO warehouseOperator values (1,'Jon','Mugica','ScrumBanBoy','123456789',true);
 
 INSERT INTO vehicles values (1,false,'parking 1',0.00);

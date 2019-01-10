@@ -3,12 +3,13 @@ create database amuzon;
 use amuzon;
 
 create table users(
-userID               TINYINT UNSIGNED,
+userID               INT AUTO_INCREMENT,
 name            varchar(25)	 NOT NULL,
 surname            varchar(25)	 NOT NULL,
 userName            varchar(25)	 NOT NULL,
 email            varchar(50)	 NOT NULL,
-password               char(9)
+password               char(9),
+PRIMARY KEY(userID)
 );
 
 create table warehouseOperator(
@@ -29,11 +30,12 @@ velocity 	decimal(7,2)
 
 create table orders(
 orderID               TINYINT UNSIGNED,
-userID                TINYINT UNSIGNED,
+userID                INT ,
 vehicleID                TINYINT UNSIGNED,
 datee                 date,
 statee             VARCHAR(25)     NOT NULL,
-total                decimal(7,2)
+total                decimal(7,2),
+FOREIGN KEY (userID) REFERENCES users(userID)
 );
 
 
@@ -47,7 +49,7 @@ productID               TINYINT UNSIGNED,
 categoryID               VARCHAR(25) NOT NULL,
 description            varchar(65)	 NOT NULL,
 stock            SMALLINT UNSIGNED,
-prize                decimal(7,2),
+price                decimal(7,2),
 warehouseID               TINYINT UNSIGNED
 );
 
@@ -59,8 +61,6 @@ statee				varchar(10) not null
 );
 
 
-ALTER TABLE users 
-	ADD  CONSTRAINT PK_users PRIMARY KEY users(userID);
 	
 	
 ALTER TABLE warehouseOperator 
@@ -71,8 +71,7 @@ ALTER TABLE vehicles
 	
 ALTER TABLE orders 
 	ADD  CONSTRAINT PK_orders PRIMARY KEY orders(orderID),
-	ADD CONSTRAINT FK_orders1 FOREIGN KEY orders (userID) REFERENCES users(userID),
-	ADD CONSTRAINT FK_orders2 FOREIGN KEY orders (vehicleID) REFERENCES vehicles(vehicleID);
+	ADD CONSTRAINT FK_orders1 FOREIGN KEY orders (vehicleID) REFERENCES vehicles(vehicleID);
 	
 ALTER TABLE category 
 	ADD  CONSTRAINT PK_category PRIMARY KEY category(categoryID);	
