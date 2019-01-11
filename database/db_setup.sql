@@ -10,7 +10,7 @@ userName            varchar(25)	 NOT NULL,
 email            varchar(50)	 NOT NULL,
 password               char(9),
 gender			varchar(25),
-born_date				date
+born_date				date,
 PRIMARY KEY(userID)
 );
 
@@ -33,7 +33,6 @@ velocity 	decimal(7,2)
 create table orders(
 orderID               TINYINT UNSIGNED,
 userID                INT ,
-vehicleID                TINYINT UNSIGNED,
 datee                 date,
 statee             VARCHAR(25)     NOT NULL,
 total                decimal(7,2),
@@ -55,11 +54,12 @@ price                decimal(7,2),
 warehouseID               TINYINT UNSIGNED
 );
 
-create table item(
+create table orders_product(
 orderID  			TINYINT UNSIGNED not null,
 productID	 		TINYINT UNSIGNED not null,
-vehicleID  			TINYINT UNSIGNED not null,
-statee				varchar(10) not null				
+quantity			TINYINT UNSIGNED not null,
+price				TINYINT UNSIGNED not null,
+remaining			TINYINT UNSIGNED not null				
 );
 
 
@@ -72,8 +72,8 @@ ALTER TABLE vehicles
 	ADD  CONSTRAINT PK_vehicles PRIMARY KEY vehicles(vehicleID);
 	
 ALTER TABLE orders 
-	ADD  CONSTRAINT PK_orders PRIMARY KEY orders(orderID),
-	ADD CONSTRAINT FK_orders1 FOREIGN KEY orders (vehicleID) REFERENCES vehicles(vehicleID);
+	ADD  CONSTRAINT PK_orders PRIMARY KEY orders(orderID);
+	
 	
 ALTER TABLE category 
 	ADD  CONSTRAINT PK_category PRIMARY KEY category(categoryID);	
@@ -84,8 +84,7 @@ ALTER TABLE product
 	ADD CONSTRAINT FK_product FOREIGN KEY product (categoryID) REFERENCES category(categoryID);
 	
 
-ALTER TABLE item 
-	ADD CONSTRAINT PK_item PRIMARY KEY item (orderID,productID,vehicleID),
-	ADD CONSTRAINT FK_item1 FOREIGN KEY item (orderID) REFERENCES orders(orderID),
-	ADD CONSTRAINT FK_item2 FOREIGN KEY item (productID) REFERENCES product(productID),
-	ADD CONSTRAINT FK_item3 FOREIGN KEY item (vehicleID) REFERENCES vehicles(vehicleID);
+ALTER TABLE orders_product 
+	ADD CONSTRAINT PK_orders_product PRIMARY KEY orders_product (orderID,productID),
+	ADD CONSTRAINT FK_orders_product1 FOREIGN KEY orders_product (orderID) REFERENCES orders(orderID),
+	ADD CONSTRAINT FK_orders_product2 FOREIGN KEY orders_product (productID) REFERENCES product(productID);
