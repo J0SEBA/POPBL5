@@ -10,10 +10,12 @@ import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 
 public class Manager extends Thread{
+	
+	
+	
 	ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
 	ArrayList<Segmento> listaSegmentos = new ArrayList<Segmento>();
 	Semaphore sql;
-	
 	Connection connection = null;
 	Statement statement = null;
 	String serverName = "localhost";
@@ -25,6 +27,8 @@ public class Manager extends Thread{
 	
 	String check="none";
 	ArrayList<Integer> dataSet = new ArrayList<Integer>();
+	ArrayList<Pedido> listaPedidos = new ArrayList<Pedido>();
+	ArrayList<Producto> cola = new ArrayList<Producto>();
 	
 	public Manager(ArrayList<Vehiculo> listaVehiculos, Semaphore sql, ArrayList<Segmento> listaSegmentos) {
 		this.listaVehiculos=listaVehiculos;
@@ -32,8 +36,9 @@ public class Manager extends Thread{
 		this.connectionString = url + serverName + "/" + dataBaseName;
 		this.sql=sql;
 		connect();
-		check();
-		leer();
+		init();
+		/*check();
+		leer();*/
 	}
 	
 	public boolean check() {
@@ -100,21 +105,65 @@ public class Manager extends Thread{
 		}
 	}
 	
+	public void init() {
+		ResultSet rs;
+		String query1="select orderID, statee from orders";
+		String query2="select orders_product.orderID, orders_product.isAssigned, orders_product.productID, orders_product.quantity, product.description, product.warehouseID from orders_product join product on orders_product.productID=product.productID";
+		Statement stm;
+		try {
+			sql.acquire();
+			stm = connection.createStatement();
+			rs = stm.executeQuery(query1);
+			while(rs.next()) {
+				if(rs.getInt("statee")==0) {
+					listaPedidos.add(new Pedido(rs.getInt("orderID")));
+				}
+			}
+			while(rs.next()) {
+				if(rs.getInt("isAssigned")==0) {
+					int aux = rs.getInt("orderID");
+					int result = -1;
+					for(int i = 0;i<listaPedidos.size();i++) {
+						if(listaPedidos.get(i).id==aux) {
+							result = i;
+						}
+					}
+					listaPedidos.get(result).lista.add(new Producto(rs.getString("description"), rs.getInt("quantity"), rs.getInt("warehouseID")));
+					cola.add(new Producto(rs.getString("description"), rs.getInt("quantity"), rs.getInt("warehouseID")));
+				}
+			}
+			for(Pedido p:listaPedidos) {
+				System.out.println(p.toString());
+			}
+			
+			stm.executeUpdate("update orders set statee = 1");
+			stm.executeUpdate("update orders_product set isAssigned = 1");
+			sql.release();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void leer() {
 		ResultSet rs;
-		String query = "select * from orders_product";
+		String query = "select * from orders";
 		Statement stm;
 		try {
 			sql.acquire();
 			stm = connection.createStatement();
 			rs = stm.executeQuery(query);
-			while(rs.next()) {
+			
+			/*while(rs.next()) {
 				int i = rs.getInt("isAssigned");
 				if(i==0) {
 					dataSet.add(rs.getInt("productID"));
 					System.out.println(rs.getInt("productID"));
 				}
-			}
+			}*/
 			stm.executeUpdate("update orders_product set isAssigned = 1 where isAssigned = 0");
 			
 			sql.release();
@@ -154,10 +203,30 @@ public class Manager extends Thread{
 	}
 	
 	public void asignar() {
+		
+		for(Vehiculo v:listaVehiculos) {
+			if(cola.size()>0) {
+				if(v.actual.self==v.parking) {
+					v.actual.ws.ocupado=false;
+					v.fin=cola.get(cola.size()-1).wsID>5 ? new Point(9,0) : new Point(1,2);
+					v.objetivo=cola.get(cola.size()-1).wsID>5 ? new Point(9,0) : new Point(1,2);
+					v.parking= new Point(0,0);
+					v.actual.ws.exit.release();
+					System.out.println("He despertado ha "+v.id+" para que vaya a"+v.fin);
+					cola.get(cola.size()-1).cantidad--;
+					if(cola.get(cola.size()-1).cantidad==0) {
+						cola.remove(cola.size()-1);
+					}
+				}
+			}
+		}
+		
+		System.out.println("Quedan: "+cola.size());
+		/*
 		int helper = dataSet.size();
 		for(int j=helper-1;j>=0;j--) {
 			for(int i=0;i<listaVehiculos.size();i++) {
-				if(listaVehiculos.get(i).fin==listaVehiculos.get(i).parking) {
+				if(listaVehiculos.get(i).actual.self==listaVehiculos.get(i).parking) {
 					int aux = getWs(dataSet.get(j));
 					Point temp;
 					switch(aux) {
@@ -176,9 +245,10 @@ public class Manager extends Thread{
 					default:
 						temp=listaVehiculos.get(i).init;
 					}
-					
+					listaVehiculos.get(i).actual.ws.ocupado=false;
 					listaVehiculos.get(i).fin=temp;
-					listaVehiculos.get(i).estado="Working";
+					listaVehiculos.get(i).objetivo=temp;
+					listaVehiculos.get(i).parking= new Point(0,0);
 					listaVehiculos.get(i).actual.ws.exit.release();
 					System.out.println("He despertado ha "+listaVehiculos.get(i).id+" para que vaya a"+listaVehiculos.get(i).fin);
 					dataSet.remove(j);
@@ -186,9 +256,7 @@ public class Manager extends Thread{
 					break;
 				}
 			}
-		}
-		
-		
+		}*/
 	}
 	
 	@Override
@@ -206,12 +274,13 @@ public class Manager extends Thread{
 						+"\n"+listaSegmentos.get(6).ws.ocupado
 						+"\n"+listaSegmentos.get(8).ws.ocupado);
 				Thread.sleep(1000);
-				if(check()) {
+				/*if(check()) {
 					leer();
 				}
 				if(dataSet.size()>0) {
 					asignar();
-				}
+				}*/
+				asignar();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

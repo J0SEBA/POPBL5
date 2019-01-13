@@ -24,8 +24,7 @@ public class Vehiculo extends Thread{
 		super();
 		this.init = init;
 		this.fin = fin;
-		objetivo=fin;
-		parking = new Point(0,0);
+		objetivo= new  Point(0,0);
 		this.listaSegmentos = listaSegmentos;
 		this.id=id;
 		this.selectParking = selectParking;
@@ -38,7 +37,11 @@ public class Vehiculo extends Thread{
 		for(int i=0;i<listaSegmentos.size();i++) {
 			if(listaSegmentos.get(i).self.equals(init)) {
 				actual=listaSegmentos.get(i);
+				parking=listaSegmentos.get(i).self;
+				fin=parking;
+				actual.ws.ocupado=true;
 				try {
+					
 					actual.entry.acquire();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
@@ -66,6 +69,9 @@ public class Vehiculo extends Thread{
 					buscado=true;
 				}
 			}
+		}
+		if(buscado==false) {
+			System.out.println("Hay un problema");
 		}
 		selectParking.release();
 	}
@@ -106,39 +112,6 @@ public class Vehiculo extends Thread{
 		}
 	}
 	
-	public boolean tryEnterAlt() {
-		boolean done=false;
-		try {
-			done=actual.alt.entry.tryAcquire(1, TimeUnit.NANOSECONDS);
-			//System.out.println(done);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return done;
-	}
-	
-	public void enterAlt() {
-		Segmento aux=actual;
-		System.out.println(id+" Estoy en "+ actual.self);
-		actual=actual.alt;
-		aux.entry.release();
-	}
-	
-	public void enterNext() {
-		Segmento aux= actual;
-		System.out.println(id+" Estoy en "+ actual.self);
-		try {
-			actual.next.entry.acquire();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		actual=actual.next;
-		aux.entry.release();
-	}
-	
 	public void entrarParking() {
 		actual.entry.release();
 		System.out.println(id+" Voy a dormir en "+actual.ws.nombre+actual.self);
@@ -155,7 +128,16 @@ public class Vehiculo extends Thread{
 	
 	public boolean llegada() {
 		if(actual.self.equals(objetivo)) {
-			System.out.println(id+": He llegado al almacen---->"+objetivo);
+			
+			try {
+				actual.ws.entry.acquire();
+				System.out.println(id+": He llegado al almacen---->"+objetivo);
+				actual.ws.entry.release();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			fin=salida.self;
 		} else if(actual.self.equals(salida.self)) {
 			System.out.println(id+": He llegado ha salida----->"+salida.self);
@@ -221,4 +203,39 @@ public class Vehiculo extends Thread{
 			}
 		}
 	}
+	
+
+	public boolean tryEnterAlt() {
+		boolean done=false;
+		try {
+			done=actual.alt.entry.tryAcquire(1, TimeUnit.NANOSECONDS);
+			//System.out.println(done);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return done;
+	}
+	
+	public void enterAlt() {
+		Segmento aux=actual;
+		System.out.println(id+" Estoy en "+ actual.self);
+		actual=actual.alt;
+		aux.entry.release();
+	}
+	
+	public void enterNext() {
+		Segmento aux= actual;
+		System.out.println(id+" Estoy en "+ actual.self);
+		try {
+			actual.next.entry.acquire();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		actual=actual.next;
+		aux.entry.release();
+	}
+	
 }
