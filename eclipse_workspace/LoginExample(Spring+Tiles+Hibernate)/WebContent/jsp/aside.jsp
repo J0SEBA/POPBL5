@@ -1,0 +1,1 @@
+<p>This example has been made with <span style="font-weight:bold">Spring MVC</span>, <span style="font-weight:bold">Tiles 2</span> and <span style="font-weight:bold">Hibernate</span></p>  
