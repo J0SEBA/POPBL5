@@ -9,8 +9,8 @@ surname            varchar(25)	 NOT NULL,
 userName            varchar(25)	 NOT NULL,
 email            varchar(50)	 NOT NULL,
 password               char(9),
-gender			varchar(25),
-born_date				date,
+gender                 varchar(25),
+born_date              date,
 PRIMARY KEY(userID)
 );
 
@@ -51,19 +51,17 @@ categoryID               VARCHAR(25) NOT NULL,
 description            varchar(65)	 NOT NULL,
 stock            SMALLINT UNSIGNED,
 price                decimal(7,2),
-warehouseID               TINYINT UNSIGNED
+workstationID               TINYINT UNSIGNED
 );
 
 create table orders_product(
 orderID  			TINYINT UNSIGNED not null,
 productID	 		TINYINT UNSIGNED not null,
-quantity			TINYINT UNSIGNED not null,
-price				TINYINT UNSIGNED not null,
-remaining			TINYINT UNSIGNED not null				
+quantity            TINYINT UNSIGNED not null,
+price               decimal(7,2) not null,
+remaining           TINYINT UNSIGNED not null				
 );
 
-
-	
 	
 ALTER TABLE warehouseOperator 
 	ADD  CONSTRAINT PK_warehouseOperator PRIMARY KEY warehouseOperator(operatorID);

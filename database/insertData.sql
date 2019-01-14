@@ -1,4 +1,4 @@
-INSERT INTO users(name,surname,userName,email,password,gender,born_date) values ('Aitor','Eizmendi','Hulio10','aitor.eizmendi@alumni.mondragon.edu','osasuna','male','1997-01-01');
+﻿INSERT INTO users(name,surname,userName,email,password,gender,born_date) values ('Aitor','Eizmendi','Hulio10','aitor.eizmendi@alumni.mondragon.edu','osasuna','male','1997-01-01');
 INSERT INTO users(name,surname,userName,email,password,gender,born_date) values ('Joseba','Carnicero','Hulio12','joseba.carnicero@alumni.mondragon.edu','osasuna','female','1998-02-6');
 INSERT INTO users(name,surname,userName,email,password,gender,born_date) values ('Marcos','Azcarate','Hulio14','marcos.azcarate@alumni.mondragon.edu','osasuna','female','1996-02-29');
 INSERT INTO warehouseOperator values (1,'Jon','Mugica','ScrumBanBoy','123456789',true);
@@ -27,7 +27,7 @@ INSERT INTO category values ('Home and Garden');
 INSERT INTO category values ('School supplies');
 
 INSERT INTO product values (1,'Video games','Xbox one + Fornite','250',239.00,1);
-INSERT INTO product values (2,'Video games','forza Horizon','250',47.99,1);
+INSERT INTO product values (2,'Video games','Forza Horizon','250',47.99,1);
 INSERT INTO product values (3,'Video games','PlayStation 4 + Fornite','250',239.00,1);
 INSERT INTO product values (4,'Video games','Fifa 19','250',59.50,1);
 INSERT INTO product values (5,'Video games','Nintendo Switch + Mario Kart','250',359.50,1);
@@ -54,7 +54,7 @@ INSERT INTO product values (34,'Books','Pride and Prejudice','220',25.60,2);
 INSERT INTO product values (35,'Books','Moby-Dick','220',21.60,2);
 INSERT INTO product values (36,'Books','The Curious Case of Benjamin Button','220',19.60,2);
 
-INSERT INTO product values (41,'Electronics','Smart TV 50"','220',499.99,3);
+INSERT INTO product values (41,'Electronics','Smart TV 50','220',499.99,3);
 INSERT INTO product values (42,'Electronics','Speakers system','220',99.99,3);
 INSERT INTO product values (43,'Electronics','Optoma H183X - Proyector','220',483.60,3);
 INSERT INTO product values (44,'Electronics','SmartWatch','220',183.60,3);
@@ -68,8 +68,8 @@ INSERT INTO product values (54,'Computing','Macbook Pro','220',1111.60,3);
 INSERT INTO product values (55,'Computing','iPad','220',320.60,3);
 INSERT INTO product values (56,'Computing','msi - Portatil','220',920.60,3);
 
-INSERT INTO product values (61,'Sports','Paddle Shovel - Head"','220',79.99,4);
-INSERT INTO product values (62,'Sports','Game of golf clubs','220',309.00,4);
+INSERT INTO product values (61,'Sports','Paddle raquet - Head"','220',79.99,4);
+INSERT INTO product values (62,'Sports','Set of golf sticks','220',309.00,4);
 INSERT INTO product values (63,'Sports','Osasuna football shirt','220',65.60,4);
 INSERT INTO product values (64,'Sports','Milwaukee Bucks T-Shirt Antetokoumpo','220',60.60,4);
 INSERT INTO product values (65,'Sports','Kneepads','220',20.20,4);
@@ -83,15 +83,38 @@ INSERT INTO product values (75,'Fashion','Black Jeans','220',25.00,4);
 INSERT INTO product values (76,'Fashion','Tracksuit Adidas','220',80.90,4);
 
 INSERT INTO product values (81,'Home and Garden','Flower Pot Lima','220', 609,5);
-INSERT INTO product values (82,'Home and Garden','Watering can ','220',5.95,5);
+INSERT INTO product values (82,'Home and Garden','Watering can','220',5.95,5);
 INSERT INTO product values (83,'Home and Garden','Insecticide','220',25.40,5);
 INSERT INTO product values (84,'Home and Garden','Garden gnome','220',60.00,5);
 INSERT INTO product values (85,'Home and Garden','Budha','220',140.00,5);
-INSERT INTO product values (86,'Home and Garden','Roomba vacuum cleaner ','220',250.00,5);
+INSERT INTO product values (86,'Home and Garden','Roomba vacuum cleaner','220',250.00,5);
 
-INSERT INTO product values (91,'School supplies','electric pencil sharpener','220',399.00,6);
+INSERT INTO product values (91,'School supplies','Electric pencil sharpener','220',399.00,6);
 INSERT INTO product values (92,'School supplies','4 color pen','220',4.75,6);
 INSERT INTO product values (93,'School supplies','Nemo School bag','220', 25.00,6);
 INSERT INTO product values (94,'School supplies','School folder','220',14.00,6);
 INSERT INTO product values (95,'School supplies','Rubber milan','220',2.5,6);
 INSERT INTO product values (96,'School supplies','Compass','220',17.48,6);
+
+INSERT INTO orders values(1,3,'2019-01-01','Unfinished',738.99); 
+INSERT INTO orders values(2,3,'2019-01-02','Unfinished',808.99);
+INSERT INTO orders values(3,3,'2019-01-03','Unfinished',613.75); 
+INSERT INTO orders values(4,3,'2019-01-04','Unfinished',147.98); 
+INSERT INTO orders values(5,3,'2019-01-05','Unfinished',90.60); 
+
+INSERT INTO orders_product values(1,1,1,239.00,1);
+INSERT INTO orders_product values(1,22,1,499.99,1);
+
+INSERT INTO orders_product values(2,41,1,499.99,1);
+INSERT INTO orders_product values(2,62,1,309.00,1);
+
+INSERT INTO orders_product values(3,81,1,609.00,1);
+INSERT INTO orders_product values(3,92,1,4.75,1);
+
+INSERT INTO orders_product values(4,2,1,47.99,1);
+INSERT INTO orders_product values(4,42,1,99.99,1);
+
+INSERT INTO orders_product values(5,63,1,65.60,1);
+INSERT INTO orders_product values(5,93,1,25.00,1);
+
+
