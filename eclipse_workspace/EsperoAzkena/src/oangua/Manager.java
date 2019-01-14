@@ -26,7 +26,6 @@ public class Manager extends Thread{
 	String connectionString = null;
 	
 	String check="none";
-	ArrayList<Integer> dataSet = new ArrayList<Integer>();
 	ArrayList<Pedido> listaPedidos = new ArrayList<Pedido>();
 	ArrayList<Producto> cola = new ArrayList<Producto>();
 	
@@ -36,9 +35,8 @@ public class Manager extends Thread{
 		this.connectionString = url + serverName + "/" + dataBaseName;
 		this.sql=sql;
 		connect();
-		init();
-		/*check();
-		leer();*/
+		check();
+		leerDatabase();
 	}
 	
 	public boolean check() {
@@ -105,6 +103,42 @@ public class Manager extends Thread{
 		}
 	}
 	
+	public void leerDatabase() {
+		ResultSet rs, rs2;
+		String query1="select orderID, statee from orders";
+		String query2="select orders_product.orderID, orders_product.remaining, orders_product.productID, product.warehouseID, product.description "
+				+ "from orders_product join product on product.productID = orders_product.productID";
+		
+		Statement stm, stm2;
+		
+		try {
+			sql.acquire();
+			stm = connection.createStatement();
+			stm2 = connection.createStatement();
+			rs = stm.executeQuery(query1);
+			while(rs.next()) {
+				if(rs.getString("statee").equals("Unfinished")) {
+					listaPedidos.add(new Pedido(rs.getInt("orderID")));
+					rs2=stm2.executeQuery(query2);
+					while(rs2.next()) {
+						if(rs2.getInt("orderID")==rs.getInt("orderID")) {
+							listaPedidos.get(listaPedidos.size()-1).lista.add(new Producto(rs2.getString("description"),rs2.getInt("remaining"),rs2.getInt("warehouseID")));
+						}
+					}
+				}
+			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		sql.release();
+		System.out.println(listaPedidos);
+		
+	}
+	
 	public void init() {
 		ResultSet rs;
 		String query1="select orderID, statee from orders";
@@ -148,37 +182,6 @@ public class Manager extends Thread{
 		}
 	}
 	
-	public void leer() {
-		ResultSet rs;
-		String query = "select * from orders";
-		Statement stm;
-		try {
-			sql.acquire();
-			stm = connection.createStatement();
-			rs = stm.executeQuery(query);
-			
-			/*while(rs.next()) {
-				int i = rs.getInt("isAssigned");
-				if(i==0) {
-					dataSet.add(rs.getInt("productID"));
-					System.out.println(rs.getInt("productID"));
-				}
-			}*/
-			stm.executeUpdate("update orders_product set isAssigned = 1 where isAssigned = 0");
-			
-			sql.release();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
-	}
-	
 	public int getWs(int i) {
 		String s = "select warehouseID from product where productID="+i;
 		ResultSet rs;
@@ -203,60 +206,62 @@ public class Manager extends Thread{
 	}
 	
 	public void asignar() {
-		
+		Point aux=null;
 		for(Vehiculo v:listaVehiculos) {
-			if(cola.size()>0) {
-				if(v.actual.self==v.parking) {
-					v.actual.ws.ocupado=false;
-					v.fin=cola.get(cola.size()-1).wsID>5 ? new Point(9,0) : new Point(1,2);
-					v.objetivo=cola.get(cola.size()-1).wsID>5 ? new Point(9,0) : new Point(1,2);
-					v.parking= new Point(0,0);
-					v.actual.ws.exit.release();
-					System.out.println("He despertado ha "+v.id+" para que vaya a"+v.fin);
-					cola.get(cola.size()-1).cantidad--;
-					if(cola.get(cola.size()-1).cantidad==0) {
-						cola.remove(cola.size()-1);
+			if(v.actual.self==v.parking) {
+				for(Pedido pedido:listaPedidos) {
+					for(Producto producto: pedido.lista) {
+						if(producto.cantidad>0) {
+							if(v.actual.self==v.parking) {
+								v.actual.ws.ocupado=false;
+								switch (producto.wsID) {
+								case 1:
+									aux=new Point(9,0);
+									break;
+								case 2:
+									aux=new Point(5,0);
+									break;
+								case 3:
+									aux=new Point(1,0);
+									break;
+								case 4:
+									aux=new Point(1,2);
+									break;
+								case 5:
+									aux=new Point(5,2);
+									break;
+								case 6:
+									aux=new Point(3,2);
+									break;
+								}
+								v.fin=aux;
+								v.objetivo=aux;
+								v.parking=new Point(0,0);
+								v.actual.ws.exit.release();
+								System.out.println("He despertado ha "+v.id+" para que vaya a"+v.fin);
+								producto.cantidad--;
+							}
+						}
 					}
+				}
+			}
+			
+		}
+		
+		for(int i=listaPedidos.size()-1;i>=0;i--) {
+			for(int j=listaPedidos.get(i).lista.size()-1;j>=0;j--) {
+				if(listaPedidos.get(i).lista.get(j).cantidad==0) {
+					listaPedidos.get(i).lista.remove(j);
 				}
 			}
 		}
-		
-		System.out.println("Quedan: "+cola.size());
-		/*
-		int helper = dataSet.size();
-		for(int j=helper-1;j>=0;j--) {
-			for(int i=0;i<listaVehiculos.size();i++) {
-				if(listaVehiculos.get(i).actual.self==listaVehiculos.get(i).parking) {
-					int aux = getWs(dataSet.get(j));
-					Point temp;
-					switch(aux) {
-					case 1:
-						temp=new Point(9,0);
-						break;
-					case 2:
-						temp=new Point(5,0);
-						break;
-					case 3:
-						temp=new Point(1,0);
-						break;
-					case 4:
-						temp=new Point(1,2);
-						break;
-					default:
-						temp=listaVehiculos.get(i).init;
-					}
-					listaVehiculos.get(i).actual.ws.ocupado=false;
-					listaVehiculos.get(i).fin=temp;
-					listaVehiculos.get(i).objetivo=temp;
-					listaVehiculos.get(i).parking= new Point(0,0);
-					listaVehiculos.get(i).actual.ws.exit.release();
-					System.out.println("He despertado ha "+listaVehiculos.get(i).id+" para que vaya a"+listaVehiculos.get(i).fin);
-					dataSet.remove(j);
-					System.out.println("Cantidad de que haceres: " +dataSet.size());
-					break;
-				}
+		for(int i=listaPedidos.size()-1;i>=0;i--) {
+			if(listaPedidos.get(i).lista.size()==0) {
+				listaPedidos.remove(i);
 			}
-		}*/
+		}
+		System.out.println("Quedan "+listaPedidos.size());
+		System.out.println("Quedan "+listaPedidos);
 	}
 	
 	@Override
@@ -272,14 +277,13 @@ public class Manager extends Thread{
 						+"\n"+listaSegmentos.get(1).ws.ocupado
 						+"\n"+listaSegmentos.get(3).ws.ocupado
 						+"\n"+listaSegmentos.get(6).ws.ocupado
-						+"\n"+listaSegmentos.get(8).ws.ocupado);
+						+"\n"+listaSegmentos.get(8).ws.ocupado
+						+"\n"+listaSegmentos.get(4).ws.ocupado);
 				Thread.sleep(1000);
-				/*if(check()) {
-					leer();
+				if(check()) {
+					
 				}
-				if(dataSet.size()>0) {
-					asignar();
-				}*/
+				//leerDatabase();
 				asignar();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block

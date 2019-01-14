@@ -24,7 +24,7 @@ public class Pedido {
 
 	@Override
 	public String toString() {
-		return "Pedido [id=" + id + ", lista=" + lista + "]";
+		return "Pedido [id=" + id + ", lista=" + lista + "]\n";
 	}
 	
 }
