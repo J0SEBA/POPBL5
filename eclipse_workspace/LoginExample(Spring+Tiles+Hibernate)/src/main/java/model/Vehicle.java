@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name = "vehicle")
 @Table(name = "vehicles")
 public class Vehicle {
 	
@@ -16,8 +16,6 @@ public class Vehicle {
 	@Column(name = "vehicleID")
 	private int id;
 	
-	@Column(name = "productID")
-	private int productIdd;
 	
 	@Column(name = "statee")
 	private boolean state;
@@ -28,7 +26,7 @@ public class Vehicle {
 	@Column(name = "velocity")
 	private float velocity;
 	
-	public Vehicle(int id, int productId, boolean state, String position, float velocity) {
+	public Vehicle(int id, boolean state, String position, float velocity) {
 		this.id=id;
 		this.state=state;
 		this.position=position;
@@ -41,14 +39,6 @@ public class Vehicle {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getProductIdd() {
-		return productIdd;
-	}
-
-	public void setProductIdd(int productIdd) {
-		this.productIdd = productIdd;
 	}
 
 	public boolean isState() {

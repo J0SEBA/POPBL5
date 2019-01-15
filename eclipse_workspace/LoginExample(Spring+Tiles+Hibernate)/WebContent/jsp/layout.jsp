@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>    
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"    
 "http://www.w3.org/TR/html4/loose.dtd">    
@@ -19,7 +19,7 @@
 		<div class="header" style=""><tiles:insertAttribute name="header"/></div>    
 		<!--  <div style="float:left;padding:10px;width:15%;"><tiles:insertAttribute name="aside" /></div>  -->  
 		<div role="main" class="main" style="padding:10px; width:100% "><tiles:insertAttribute name="body" /></div>    
-		<div class="footer " style=""><tiles:insertAttribute name="footer" /></div>    
+		<!--  <div class="footer " style=""><tiles:insertAttribute name="footer" /></div>    -->
 	 
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

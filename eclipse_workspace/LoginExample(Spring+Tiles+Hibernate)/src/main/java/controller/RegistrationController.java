@@ -32,11 +32,11 @@ public class RegistrationController {
   @RequestMapping(value = "/registerProcess", method = RequestMethod.POST)
   public ModelAndView addUser(HttpServletRequest request, HttpServletResponse response,
   @ModelAttribute("user") User user) {
-	HttpSession session = request.getSession(true);
-  	uf.register(user);
-  	session.setAttribute("user", user);
-  	ModelAndView mav=new ModelAndView("welcome", "firstname", user.getFirstName());
-  	mav.addObject("user", user);
+	  	HttpSession session = request.getSession(true);
+  		uf.register(user);
+  		session.setAttribute("user", user);
+  		ModelAndView mav=new ModelAndView("welcome", "firstname", user.getFirstName());
+  	
   	return mav;
   }
 }

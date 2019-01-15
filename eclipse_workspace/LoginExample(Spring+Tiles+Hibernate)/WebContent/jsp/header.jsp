@@ -11,7 +11,7 @@
   <c:choose>  
     <c:when test="${not empty sessionScope.user}">
 		<div class=" btn-group ml-auto mx-2" >
-		  <button type="button" class=" btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		  <button type="button" class=" btn btn-info dropdown-toggle mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		    <c:out value="${sessionScope.user.username}"/>
 		  </button>
 		  <div class="dropdown-menu">
@@ -61,9 +61,9 @@
         </ul>
 	</c:otherwise>
   </c:choose>
-    <form class="form-inline my-2 my-lg-0 ">
+   <!--   <form class="form-inline my-2 my-lg-0 ">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    </form>-->
   </div>
 </nav> 

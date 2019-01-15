@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <table>
             <tr>
-                <td>Welcome ${firstname}</td>
+                <td>Welcome ${sessionScope.user.id}</td>
                 
             </tr>
             <tr>

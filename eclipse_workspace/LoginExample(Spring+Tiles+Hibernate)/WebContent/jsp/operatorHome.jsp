@@ -6,7 +6,7 @@
 		<c:choose>
 		<c:when test="${sessionScope.manager}">
 			
-		  <a class="btn btn-primary btn-lg btn-block" href="historicalVehicles.html" role="button">HISTORICAL OF VEHICLES</a>
+		<a class="btn btn-primary btn-lg btn-block" href="historicalVehicles.html" role="button">HISTORICAL OF VEHICLES</a>
 		<a class="btn btn-primary btn-lg btn-block" href="historicalOrders.html" role="button">HISTORICAL OF ORDERS</a>
 		<a class="btn btn-primary btn-lg btn-block" href="historicalWorkstation.html" role="button">HISTORICAL OF WAREHOUSE</a>
 		  

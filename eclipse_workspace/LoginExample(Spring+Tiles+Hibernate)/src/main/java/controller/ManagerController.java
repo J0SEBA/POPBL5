@@ -1,5 +1,8 @@
 package main.java.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,9 +23,12 @@ public class ManagerController {
 	    
 		
 		ModelAndView mav = new ModelAndView("historicalVehicles");
+
 		
 		return mav;
 	}
+	
+	
 	
 	@RequestMapping(value = "/historicalOrders", method = RequestMethod.GET)
 	public ModelAndView showHistoricalOrders(HttpServletRequest request, HttpServletResponse response) {

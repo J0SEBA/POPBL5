@@ -2,6 +2,8 @@ package main.java.dao;
 
 
 
+import java.util.List;
+
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Repository;
 import main.java.config.HibernateUtil;
 import main.java.model.Login;
 import main.java.model.Operator;
+import main.java.model.OrdersProduct;
+import main.java.model.Product;
 import main.java.model.User;
 
 
@@ -24,11 +28,7 @@ public class UserDaoMySQL implements UserDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	   
-	/*@Override
-	public void register(User user) {
-		sessionFactory.getCurrentSession().save(user);
-		
-	}*/
+	
 	@Override
 	public void register(User user) {
         Transaction transaction = null;
@@ -48,18 +48,13 @@ public class UserDaoMySQL implements UserDao {
         }
     }
 
-	/*@Override
-	public User validateUser(Login login) {
-		@SuppressWarnings("unchecked")
-		TypedQuery<User> query=sessionFactory.getCurrentSession().createQuery("from User where username="+login.getUsername()+" & "+login.getPassword());
-		return query.getSingleResult();
-	}*/
+	
 	
 	@Override
 	public User validateUser(Login login) {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			@SuppressWarnings("unchecked")
-			TypedQuery<User> query=session.createQuery("from User U where U.username='"+login.getUsername()+"' and U.password='"+login.getPassword()+"'");
+			TypedQuery<User> query=session.createQuery("from user where username='"+login.getUsername()+"' and password='"+login.getPassword()+"'");
 			return query.getSingleResult();
 		}catch(NoResultException e) {
 			return null;
@@ -70,10 +65,47 @@ public class UserDaoMySQL implements UserDao {
 	public Operator validateOperator(Login login) {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			@SuppressWarnings("unchecked")
-			TypedQuery<Operator> query=session.createQuery("from Operator O where username='"+login.getUsername()+"' and password='"+login.getPassword()+"'");
+			TypedQuery<Operator> query=session.createQuery("from operator where username='"+login.getUsername()+"' and password='"+login.getPassword()+"'");
 			return query.getSingleResult();
 		}catch(NoResultException e) {
 			return null;
 		}
 	}
+	
+	@Override
+	public List<Product> getProductsByCategory(String category){
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			@SuppressWarnings("unchecked")
+			TypedQuery<Product> query=session.createQuery("from product where categoryID='"+category+"'");
+			return query.getResultList();
+		}catch(NoResultException e) {
+			return null;
+		}
+	}
+	
+	@Override
+	public List<OrdersProduct> getCurrentOrder(int userId) {
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			@SuppressWarnings("unchecked")
+			TypedQuery<Integer> query=session.createQuery("from order where userID='"+userId+"' and statee='Done'");
+			int orderId=query.getSingleResult();
+			@SuppressWarnings("unchecked")
+			TypedQuery<OrdersProduct> result=session.createQuery("from OrdersProduct where orderID='"+orderId+"'");
+			return result.getResultList();
+		}catch(NoResultException e) {
+			return null;
+		}	
+	}
+	
+	@Override
+	public String getProductDescription(int productId){
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			@SuppressWarnings("unchecked")
+			TypedQuery<Product> query=session.createQuery("from Product P where productID='"+productId+"'");
+			return query.getSingleResult().getDescription();
+		}catch(NoResultException e) {
+			return null;
+		}
+	}
+	
 }

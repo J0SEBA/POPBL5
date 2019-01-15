@@ -16,6 +16,8 @@ public class Category {
 	@Column(name = "categoryId")
 	private String id;
 	
+	public Category() {}
+
 	public Category(String id) {
 	   this.id=id;
 	}

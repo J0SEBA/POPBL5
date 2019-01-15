@@ -1,94 +1,115 @@
 package main.java.model;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 
-	@Entity
-	@Table(name = "product")
-	public class OrdersProduct {
+	@Entity(name = "orders_product")
+	@Table(name = "orders_product")
+	public class OrdersProduct{
 
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(name = "orderID")
-		private int orderId;
-	   
-		@Id
-		@Column(name = "productID")
-		private int productId;
+		@EmbeddedId
+		private OrdersProductId id;
 
-		@Column(name = "quantity")
-		private int description;
-	   
-		@Column(name = "isAssigned")
-		private boolean isAssigned;
-	   
-		@Column(name = "prize")
-		private float prize;
-	   
-		@Column(name = "total")
-		private float total;
+		@ManyToOne(fetch=FetchType.LAZY)
+		@MapsId("orderId")
+		private Order order;
+		
+		@ManyToOne(fetch=FetchType.LAZY)
+		@MapsId("productId")
+		private Product product;
+		
+		@Column(name="quantity")
+		private int quantity;
+		 	   
+		@Column(name="price")
+		private float price;
+		  
+		@Column(name="remaining")
+		private int remaining;
 
-		public OrdersProduct(int orderId, int productId, int description, boolean isAssigned, float prize, float total) {
-			this.orderId = orderId;
-			this.productId = productId;
-			this.description = description;
-			this.isAssigned = isAssigned;
-			this.prize = prize;
-			this.total = total;
+		public OrdersProduct() {}
+
+		public OrdersProduct(OrdersProductId id, Order order, Product product, int quantity, float price,
+				int remaining) {
+			this.id = id;
+			this.order = order;
+			this.product = product;
+			this.quantity = quantity;
+			this.price = price;
+			this.remaining = remaining;
 		}
 
-		public int getOrderId() {
-			return orderId;
+		public OrdersProductId getId() {
+			return id;
 		}
 
-		public void setOrderId(int orderId) {
-			this.orderId = orderId;
+		public void setId(OrdersProductId id) {
+			this.id = id;
 		}
 
-		public int getProductId() {
-			return productId;
+		public Order getOrder() {
+			return order;
 		}
 
-		public void setProductId(int productId) {
-			this.productId = productId;
+		public void setOrder(Order order) {
+			this.order = order;
 		}
 
-		public int getDescription() {
-			return description;
+		public Product getProduct() {
+			return product;
 		}
 
-		public void setDescription(int description) {
-			this.description = description;
+		public void setProduct(Product product) {
+			this.product = product;
 		}
 
-		public boolean isAssigned() {
-			return isAssigned;
+		public int getQuantity() {
+			return quantity;
 		}
 
-		public void setAssigned(boolean isAssigned) {
-			this.isAssigned = isAssigned;
+		public void setQuantity(int quantity) {
+			this.quantity = quantity;
 		}
 
-		public float getPrize() {
-			return prize;
+		public float getPrice() {
+			return price;
 		}
 
-		public void setPrize(float prize) {
-			this.prize = prize;
+		public void setPrice(float price) {
+			this.price = price;
 		}
 
-		public float getTotal() {
-			return total;
+		public int getRemaining() {
+			return remaining;
 		}
 
-		public void setTotal(float total) {
-			this.total = total;
+		public void setRemaining(int remaining) {
+			this.remaining = remaining;
 		}
-	   
+		   
+	    @Override
+	    public boolean equals(Object o) {
+	        if (this == o) return true;
+	 
+	        if (o == null || getClass() != o.getClass())
+	            return false;
+	 
+	        OrdersProduct that = (OrdersProduct) o;
+	        return Objects.equals(order, that.order) &&
+	               Objects.equals(product, that.product);
+	    }
+	 
+	    @Override
+	    public int hashCode() {
+	        return Objects.hash(order, product);
+	    }
 		
 }

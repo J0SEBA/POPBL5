@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
-@Entity
+@Entity(name="user")
 @Table(name = "users")
 public class User {
 
@@ -41,42 +41,13 @@ public class User {
    
    @Column(name = "born_date")
    private Date birthDate;
-      /*@Id
-      @GeneratedValue(strategy = GenerationType.IDENTITY)
-      @Column(name = "userID")
-      private int id
-      ;
       
-      @Column(name = "name")
-      private String firstName;
-
-      @Column(name = "surname")
-      private String secondname;
-      
-      @Column(name = "userName")
-      private String username;
-      
-      @Column(name = "email")
-      private String email;
-      
-      @Column(name = "password")
-      private String password;
-      
-      public User(String firstname, String secondname, String username, String email, String password) {
-      this.id=0;
-      this.firstName = firstname;
-      this.secondname = secondname;
-      this.username=username;
-      this.email=email;
-      this.password=password;
-   }*/
-
    public User() {}
 
 
    
-  public User(String username, String password, String firstName, String lastName,String email,String gender,String birthDate) {
-      //this.id=0;
+  public User(int id, String username, String password, String firstName, String lastName,String email,String gender,String birthDate) {
+      this.id=id;
       this.username=username;
       this.password=password;
 	  this.firstName = firstName;
@@ -189,7 +160,6 @@ public void setBirthDate(String birthDate) {
     try {
 		this.birthDate=new java.sql.Date(format.parse(birthDate).getTime());
 	} catch (ParseException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 }

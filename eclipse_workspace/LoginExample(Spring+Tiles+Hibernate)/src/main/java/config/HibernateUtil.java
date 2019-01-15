@@ -9,6 +9,10 @@ import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
 import main.java.model.Operator;
+import main.java.model.Order;
+import main.java.model.OrdersProduct;
+import main.java.model.OrdersProductId;
+import main.java.model.Product;
 import main.java.model.User;
 
 public class HibernateUtil {
@@ -31,11 +35,17 @@ public class HibernateUtil {
 	             configuration.setProperties(settings);
 	             configuration.addAnnotatedClass(User.class);
 	             configuration.addAnnotatedClass(Operator.class);
+	             configuration.addAnnotatedClass(Product.class);
+	             configuration.addAnnotatedClass(Order.class);
+	             configuration.addAnnotatedClass(OrdersProduct.class);
+	             configuration.addAnnotatedClass(OrdersProductId.class);
+	             //configuration.addAnnotatedClass(Vehicle.class);
 	             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 	                 .applySettings(configuration.getProperties()).build();
 	             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 	         } catch (Exception e) {
 	             e.printStackTrace();
+	             System.out.println("Couldn´t connect to database");
 	         }
 	     }
 	     return sessionFactory;

@@ -56,7 +56,7 @@ public class LoginController {
 		  ModelAndView mav = null;
 	    
 		  	user = uf.validateUser(login);
-		  	//operator=uf.validateOperator(login);
+		  	
 	   
 	    
 		    if (user!=null) {
@@ -64,7 +64,8 @@ public class LoginController {
 			    	
 			    	mav = new ModelAndView("welcome");
 			    	request.getSession().setAttribute("user", user);
-			    	mav.addObject("user", user);
+			    	
+			    	
 		    	
 	  		}else if((operator=uf.validateOperator(login))!=null){
 	  			mav = new ModelAndView("operatorHome");
