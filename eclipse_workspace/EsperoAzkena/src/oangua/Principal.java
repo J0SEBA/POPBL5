@@ -21,11 +21,11 @@ public class Principal {
 	
 	public Principal() {
 		init();
-		Vehiculo vehiculo = new Vehiculo(new Point(3,0), new Point(5,0), listaSegmentos, 1, selectParking);
-		Vehiculo vehiculo2 = new Vehiculo(new Point(1,0), new Point(7,0), listaSegmentos,  2, selectParking);
-		Vehiculo vehiculo3 = new Vehiculo(new Point(7,0), new Point(1,0), listaSegmentos,  3, selectParking);
-		Vehiculo vehiculo4 = new Vehiculo(new Point(7,2), new Point(3,2), listaSegmentos,  4, selectParking);
-		Vehiculo vehiculo5 = new Vehiculo(new Point(3,2), new Point(7,2), listaSegmentos,  5, selectParking);
+		Vehiculo vehiculo = new Vehiculo(new Point(3,0), new Point(5,0), listaSegmentos, 1, selectParking, sql);
+		Vehiculo vehiculo2 = new Vehiculo(new Point(1,0), new Point(7,0), listaSegmentos,  2, selectParking, sql);
+		Vehiculo vehiculo3 = new Vehiculo(new Point(7,0), new Point(1,0), listaSegmentos,  3, selectParking, sql);
+		Vehiculo vehiculo4 = new Vehiculo(new Point(7,2), new Point(3,2), listaSegmentos,  4, selectParking, sql);
+		Vehiculo vehiculo5 = new Vehiculo(new Point(3,2), new Point(7,2), listaSegmentos,  5, selectParking, sql);
 		
 		listaVehiculos.add(vehiculo);
 		listaVehiculos.add(vehiculo2);

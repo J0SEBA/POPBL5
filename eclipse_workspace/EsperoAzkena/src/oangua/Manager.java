@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.concurrent.Semaphore;
 
 public class Manager extends Thread{
@@ -106,7 +108,7 @@ public class Manager extends Thread{
 	public void leerDatabase() {
 		ResultSet rs, rs2;
 		String query1="select orderID, statee from orders";
-		String query2="select orders_product.orderID, orders_product.remaining, orders_product.productID, product.warehouseID, product.description "
+		String query2="select orders_product.orderID, orders_product.quantity, orders_product.productID, product.workstationID, product.description "
 				+ "from orders_product join product on product.productID = orders_product.productID";
 		
 		Statement stm, stm2;
@@ -117,12 +119,12 @@ public class Manager extends Thread{
 			stm2 = connection.createStatement();
 			rs = stm.executeQuery(query1);
 			while(rs.next()) {
-				if(rs.getString("statee").equals("Unfinished")) {
+				if(!rs.getString("statee").equals("Finished")) {
 					listaPedidos.add(new Pedido(rs.getInt("orderID")));
 					rs2=stm2.executeQuery(query2);
 					while(rs2.next()) {
 						if(rs2.getInt("orderID")==rs.getInt("orderID")) {
-							listaPedidos.get(listaPedidos.size()-1).lista.add(new Producto(rs2.getString("description"),rs2.getInt("remaining"),rs2.getInt("warehouseID")));
+							listaPedidos.get(listaPedidos.size()-1).lista.add(new Producto(rs2.getString("description"),rs2.getInt("quantity"),rs2.getInt("workstationID")));
 						}
 					}
 				}
@@ -137,49 +139,6 @@ public class Manager extends Thread{
 		sql.release();
 		System.out.println(listaPedidos);
 		
-	}
-	
-	public void init() {
-		ResultSet rs;
-		String query1="select orderID, statee from orders";
-		String query2="select orders_product.orderID, orders_product.isAssigned, orders_product.productID, orders_product.quantity, product.description, product.warehouseID from orders_product join product on orders_product.productID=product.productID";
-		Statement stm;
-		try {
-			sql.acquire();
-			stm = connection.createStatement();
-			rs = stm.executeQuery(query1);
-			while(rs.next()) {
-				if(rs.getInt("statee")==0) {
-					listaPedidos.add(new Pedido(rs.getInt("orderID")));
-				}
-			}
-			while(rs.next()) {
-				if(rs.getInt("isAssigned")==0) {
-					int aux = rs.getInt("orderID");
-					int result = -1;
-					for(int i = 0;i<listaPedidos.size();i++) {
-						if(listaPedidos.get(i).id==aux) {
-							result = i;
-						}
-					}
-					listaPedidos.get(result).lista.add(new Producto(rs.getString("description"), rs.getInt("quantity"), rs.getInt("warehouseID")));
-					cola.add(new Producto(rs.getString("description"), rs.getInt("quantity"), rs.getInt("warehouseID")));
-				}
-			}
-			for(Pedido p:listaPedidos) {
-				System.out.println(p.toString());
-			}
-			
-			stm.executeUpdate("update orders set statee = 1");
-			stm.executeUpdate("update orders_product set isAssigned = 1");
-			sql.release();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	public int getWs(int i) {
@@ -205,9 +164,69 @@ public class Manager extends Thread{
 		return 0;
 	}
 	
+	public class Aux {
+		@Override
+		public String toString() {
+			return "Aux [cantidad=" + cantidad + ", id=" + id + "]";
+		}
+		public int getCantidad() {
+			return cantidad;
+		}
+		public void setCantidad(int cantidad) {
+			this.cantidad = cantidad;
+		}
+		public int getId() {
+			return id;
+		}
+		public void setId(int id) {
+			this.id = id;
+		}
+		public Aux(int cantidad, int id) {
+			super();
+			this.cantidad = cantidad;
+			this.id = id;
+		}
+		int cantidad;
+		int id;
+	}
+	
 	public void asignar() {
 		Point aux=null;
-		for(Vehiculo v:listaVehiculos) {
+		ArrayList<Aux> auxes = new ArrayList<Aux>();
+		try {
+			sql.acquire();
+			Statement stm = connection.createStatement();
+			ResultSet rs = stm.executeQuery("select timesUsed from vehicles");
+			sql.release();
+			while(rs.next()) {
+				auxes.add(new Aux(rs.getInt("timesUsed"), auxes.size()+1));
+			}
+			Collections.sort(auxes, new Comparator<Aux>() {
+			    @Override
+			    public int compare(Aux z1, Aux z2) {
+			        if (z1.getCantidad() > z2.getCantidad())
+			            return 1;
+			        if (z1.getCantidad() < z2.getCantidad())
+			            return -1;
+			        return 0;
+			    }
+			});
+			
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ArrayList<Vehiculo> listaVehiculos2 = new ArrayList<Vehiculo>();
+		for(Aux a:auxes) {
+			listaVehiculos2.add(listaVehiculos.get(a.id-1));
+		}
+		
+		
+		for(Vehiculo v:listaVehiculos2) {
 			if(v.actual.self==v.parking) {
 				for(Pedido pedido:listaPedidos) {
 					for(Producto producto: pedido.lista) {
@@ -230,14 +249,12 @@ public class Manager extends Thread{
 								case 5:
 									aux=new Point(5,2);
 									break;
-								case 6:
-									aux=new Point(3,2);
-									break;
 								}
 								v.fin=aux;
 								v.objetivo=aux;
 								v.parking=new Point(0,0);
 								v.actual.ws.exit.release();
+								v.aumentarUsos();
 								System.out.println("He despertado ha "+v.id+" para que vaya a"+v.fin);
 								producto.cantidad--;
 							}
@@ -245,7 +262,6 @@ public class Manager extends Thread{
 					}
 				}
 			}
-			
 		}
 		
 		for(int i=listaPedidos.size()-1;i>=0;i--) {

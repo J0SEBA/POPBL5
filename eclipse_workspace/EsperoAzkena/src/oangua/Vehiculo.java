@@ -1,6 +1,10 @@
 package oangua;
 
 import java.awt.Point;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
@@ -19,9 +23,20 @@ public class Vehiculo extends Thread{
 	Semaphore selectParking;
 	String estado= "Working";
 	Segmento salida;
+	Semaphore sql;
 	
-	public Vehiculo(Point init, Point fin, ArrayList<Segmento> listaSegmentos, int id, Semaphore selectParking) {
+	Connection connection = null;
+	Statement statement = null;
+	String serverName = "localhost";
+	String dataBaseName = "amuzon";
+	String url = "jdbc:mysql://";
+	String username = "root";
+	String password = "";
+	String connectionString = url + serverName + "/" + dataBaseName;
+	
+	public Vehiculo(Point init, Point fin, ArrayList<Segmento> listaSegmentos, int id, Semaphore selectParking, Semaphore sql) {
 		super();
+		this.sql=sql;
 		this.init = init;
 		this.fin = fin;
 		objetivo= new  Point(0,0);
@@ -30,7 +45,11 @@ public class Vehiculo extends Thread{
 		this.selectParking = selectParking;
 		salida=listaSegmentos.get(4);
 		buscarActual();
-		
+		connect();
+	}
+	
+	public String toString() {
+		return id+"info";
 	}
 	
 	public void buscarActual() {
@@ -48,6 +67,24 @@ public class Vehiculo extends Thread{
 					e.printStackTrace();
 				}
 			}
+		}
+	}
+	
+	public void aumentarUsos() {
+		
+		String query = "update vehicles set timesUsed = ((select timesUsed from (select * from vehicles) as proba where vehicleID ="+id+" ) + 1) where vehicleID="+id;
+		
+		try {
+			sql.acquire();
+			Statement stm=connection.createStatement();
+			stm.executeUpdate(query);
+			sql.release();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -236,6 +273,46 @@ public class Vehiculo extends Thread{
 		}
 		actual=actual.next;
 		aux.entry.release();
+	}
+	
+	private void connect() {
+
+		try {
+
+			Class.forName("com.mysql.jdbc.Driver");
+			// Class.forName("com.mysql.jdbc.Driver").newInstance();
+			connection = DriverManager.getConnection(connectionString,
+					username, password);
+			statement = connection.createStatement();
+		} catch (ClassNotFoundException e) {
+
+			System.out.println("Connection Driver Error");
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+			System.out.println("Could Not Connect to DB ");
+		}
+	}
+
+	private void disconnect() {
+
+		try {
+
+			if (statement != null) {
+
+				statement.clearWarnings();
+				statement.close();
+			}
+
+			if (connection != null) {
+
+				connection.clearWarnings();
+				connection.close();
+			}
+		} catch (SQLException e) {
+
+			System.out.println("Error disconnecting");
+		}
 	}
 	
 }
