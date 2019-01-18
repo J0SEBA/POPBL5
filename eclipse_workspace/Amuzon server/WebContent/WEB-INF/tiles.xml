@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC  
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"  
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">  
+<tiles-definitions>  
+    <definition name="base.definition"  
+        template="/jsp/layout.jsp">  
+        <put-attribute name="title" value="Amuzon" />  
+        <put-attribute name="header" value="/jsp/header.jsp" />  
+        <put-attribute name="body" value="" />  
+    </definition>   
+      
+    <definition name="managerHome" extends="base.definition">  
+        <put-attribute name="title" value="Manager home page" />  
+        <put-attribute name="body" value="/jsp/managerHome.jsp" />    
+    </definition> 
+    
+      <definition name="login" extends="base.definition">  
+        <put-attribute name="title" value="Login" />  
+        <put-attribute name="body" value="/jsp/login.jsp" />  
+    </definition> 
+    
+      <definition name="register" extends="base.definition">  
+        <put-attribute name="title" value="Register" />  
+        <put-attribute name="body" value="/jsp/register.jsp" />  
+    </definition> 
+    
+    <definition name="operatorHome" extends="base.definition">  
+        <put-attribute name="title" value="Operator home page" />  
+        <put-attribute name="body" value="/jsp/operatorHome.jsp" />  
+    </definition> 
+    
+     <definition name="home" extends="base.definition">  
+        <put-attribute name="title" value="Home page" />  
+        <put-attribute name="body" value="/jsp/home.jsp" />  
+    </definition> 
+    <definition name="orderView" extends="base.definition">  
+        <put-attribute name="title" value="Order" />  
+        <put-attribute name="body" value="/jsp/orderView.jsp" />  
+    </definition> 
+    
+    <definition name="orderList" extends="base.definition">  
+        <put-attribute name="title" value="Orders" />  
+        <put-attribute name="body" value="/jsp/orderList.jsp" />  
+    </definition> 
+    
+    <definition name="customerOrderList" extends="base.definition">  
+        <put-attribute name="title" value="Orders" />  
+        <put-attribute name="body" value="/jsp/customerOrderList.jsp" />  
+    </definition> 
+    
+    <definition name="workstationList" extends="base.definition">  
+        <put-attribute name="title" value="Workstations" />  
+        <put-attribute name="body" value="/jsp/workstationList.jsp" />  
+    </definition>
+    
+    <definition name="productList" extends="base.definition">  
+        <put-attribute name="title" value="Products" />  
+        <put-attribute name="body" value="/jsp/productList.jsp" />  
+    </definition>
+    
+    <definition name="categoryView" extends="base.definition">  
+        <put-attribute name="title" value="Shop" />  
+        <put-attribute name="body" value="/jsp/categoryView.jsp" />  
+    </definition>
+    
+    <definition name="payment" extends="base.definition">  
+        <put-attribute name="title" value="Payment" />  
+        <put-attribute name="body" value="/jsp/payment.jsp" />  
+    </definition>
+    
+    <definition name="shoppingCart" extends="base.definition">  
+        <put-attribute name="title" value="Shopping cart" />  
+        <put-attribute name="body" value="/jsp/shoppingCart.jsp" />  
+    </definition>
+    
+    <definition name="vehicleList" extends="base.definition">  
+        <put-attribute name="title" value="Shopping cart" />  
+        <put-attribute name="body" value="/jsp/vehicleList.jsp" />  
+    </definition>
+</tiles-definitions>  
