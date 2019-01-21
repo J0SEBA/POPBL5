@@ -1,0 +1,10 @@
+<map id="simulator.Vehiculo.run" name="simulator.Vehiculo.run">
+<area shape="rect" id="node2" href="$classsimulator_1_1_vehiculo.html#a7206f5327c1bb0c7e5ce49d526542740" title="simulator.Vehiculo.llegada" alt="" coords="204,97,379,124"/>
+<area shape="rect" id="node6" href="$classsimulator_1_1_vehiculo.html#a6180368ea8c35b2e7113a5f2b1368f92" title="simulator.Vehiculo.mover" alt="" coords="208,213,375,240"/>
+<area shape="rect" id="node3" href="$classsimulator_1_1_manager.html#a92b9df5fb7f406bfe8f99cdb8b6ee22a" title="simulator.Manager.entregar" alt="" coords="434,5,614,32"/>
+<area shape="rect" id="node4" href="$classsimulator_1_1_vehiculo.html#aa59295cc134f0db04e5b822ec7d6d147" title="simulator.Vehiculo.buscar\lParking" alt="" coords="438,57,610,98"/>
+<area shape="rect" id="node5" href="$classsimulator_1_1_vehiculo.html#aa860fe7afa2700e63751b39296a3dbe2" title="simulator.Vehiculo.entrar\lParking" alt="" coords="441,122,607,163"/>
+<area shape="rect" id="node7" href="$classsimulator_1_1_vehiculo.html#a74f78a4942efa75589834e4ad4e95fc4" title="simulator.Vehiculo.tryEnterAlt" alt="" coords="427,188,621,215"/>
+<area shape="rect" id="node8" href="$classsimulator_1_1_vehiculo.html#aee3cf4905b7d3668f705d8bab550cf78" title="simulator.Vehiculo.enterAlt" alt="" coords="435,239,613,265"/>
+<area shape="rect" id="node9" href="$classsimulator_1_1_vehiculo.html#ae2109a07a4719805b2b22fa2cfc74b9b" title="simulator.Vehiculo.enterNext" alt="" coords="429,289,619,316"/>
+</map>

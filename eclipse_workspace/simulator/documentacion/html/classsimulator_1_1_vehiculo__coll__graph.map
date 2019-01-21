@@ -1,0 +1,5 @@
+<map id="simulator.Vehiculo" name="simulator.Vehiculo">
+<area shape="rect" id="node5" href="$classsimulator_1_1_workstation.html" title="simulator.Workstation" alt="" coords="816,329,965,355"/>
+<area shape="rect" id="node10" href="$classsimulator_1_1_manager.html" title="simulator.Manager" alt="" coords="367,325,496,351"/>
+<area shape="rect" id="node3" href="$classsimulator_1_1_segmento.html" title="simulator.Segmento" alt="" coords="1035,291,1173,318"/>
+</map>

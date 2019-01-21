@@ -1,0 +1,5 @@
+<map id="simulator.Vehiculo.mover" name="simulator.Vehiculo.mover">
+<area shape="rect" id="node2" href="$classsimulator_1_1_vehiculo.html#a74f78a4942efa75589834e4ad4e95fc4" title="simulator.Vehiculo.tryEnterAlt" alt="" coords="220,5,415,32"/>
+<area shape="rect" id="node3" href="$classsimulator_1_1_vehiculo.html#aee3cf4905b7d3668f705d8bab550cf78" title="simulator.Vehiculo.enterAlt" alt="" coords="228,56,407,83"/>
+<area shape="rect" id="node4" href="$classsimulator_1_1_vehiculo.html#ae2109a07a4719805b2b22fa2cfc74b9b" title="simulator.Vehiculo.enterNext" alt="" coords="223,107,412,133"/>
+</map>

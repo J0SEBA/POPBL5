@@ -1,0 +1,356 @@
+\hypertarget{classsimulator_1_1_vehiculo}{}\section{simulator.\+Vehiculo Class Reference}
+\label{classsimulator_1_1_vehiculo}\index{simulator.\+Vehiculo@{simulator.\+Vehiculo}}
+
+
+Inheritance diagram for simulator.\+Vehiculo\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=177pt]{classsimulator_1_1_vehiculo__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for simulator.\+Vehiculo\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsimulator_1_1_vehiculo__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsimulator_1_1_vehiculo_a1614333acce021409a3bfe74a88750d4}{Vehiculo}} (Point init, Point fin, Array\+List$<$ \mbox{\hyperlink{classsimulator_1_1_segmento}{Segmento}} $>$ lista\+Segmentos, int id, Semaphore select\+Parking, Semaphore sql, \mbox{\hyperlink{classsimulator_1_1_manager}{Manager}} manager)
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_vehiculo_a7dc301ce9a868990dea8e406dd038979}{connect}} (String username)
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_vehiculo_aca90600bc94ce6dd02ddd4e5b712e687}{buscar\+Actual}} ()
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_vehiculo_aa59295cc134f0db04e5b822ec7d6d147}{buscar\+Parking}} ()
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_vehiculo_a6180368ea8c35b2e7113a5f2b1368f92}{mover}} ()
+\item 
+Semaphore \mbox{\hyperlink{classsimulator_1_1_vehiculo_afff145cddc29699082dab8c05d18137d}{get\+Select\+Parking}} ()
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_vehiculo_aa860fe7afa2700e63751b39296a3dbe2}{entrar\+Parking}} ()
+\item 
+boolean \mbox{\hyperlink{classsimulator_1_1_vehiculo_a7206f5327c1bb0c7e5ce49d526542740}{llegada}} ()
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_vehiculo_aa917981d13bea186e4016a9a367c8288}{set\+Producto\+ID}} (int producto\+ID)
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_vehiculo_ac84b60f19a1fcfa901dc0be573edf80f}{set\+Pedido\+ID}} (int pedido\+ID)
+\item 
+Semaphore \mbox{\hyperlink{classsimulator_1_1_vehiculo_a5dfc609221e17e725449964f7482b109}{get\+Sql}} ()
+\item 
+\mbox{\hyperlink{classsimulator_1_1_segmento}{Segmento}} \mbox{\hyperlink{classsimulator_1_1_vehiculo_ad3da0b0e11fbf762c9efbc02af14791a}{get\+Salida}} ()
+\item 
+Point \mbox{\hyperlink{classsimulator_1_1_vehiculo_a12c1abc60bddb033fdd3e04f14bb8314}{get\+Objetivo}} ()
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_vehiculo_a1eb291b75826b406fc1eee91a92b9653}{set\+Objetivo}} (Point objetivo)
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_vehiculo_a4cbe0a3d742c02919a0c355f42f3e35d}{run}} ()
+\item 
+boolean \mbox{\hyperlink{classsimulator_1_1_vehiculo_a74f78a4942efa75589834e4ad4e95fc4}{try\+Enter\+Alt}} ()
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_vehiculo_aee3cf4905b7d3668f705d8bab550cf78}{enter\+Alt}} ()
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_vehiculo_ae2109a07a4719805b2b22fa2cfc74b9b}{enter\+Next}} ()
+\item 
+\mbox{\hyperlink{classsimulator_1_1_segmento}{Segmento}} \mbox{\hyperlink{classsimulator_1_1_vehiculo_ad6305ffaaa4eee022c07cac7515df015}{get\+Actual}} ()
+\item 
+Point \mbox{\hyperlink{classsimulator_1_1_vehiculo_a4adff38665fbd605cc1aadf42dae9787}{get\+Fin}} ()
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_vehiculo_ac31a172023d50e9ac576ffb0f449bfb8}{set\+Fin}} (Point fin)
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_vehiculo_a2515527cf1b20dfbd634f6bc54e3f8ad}{set\+Parking}} (Point point)
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_vehiculo_ae8246a5b77441c21681ffd2033075348}{set\+Actual}} (\mbox{\hyperlink{classsimulator_1_1_segmento}{Segmento}} segmento)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the Vehicle class. Vehicle
+
+\begin{DoxyAuthor}{Author}
+Joseba Carnicero, Aitor Eizmendi, Jon Mugica and Marcos Azkarate 
+\end{DoxyAuthor}
+
+
+Definition at line 19 of file Vehiculo.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_a1614333acce021409a3bfe74a88750d4}\label{classsimulator_1_1_vehiculo_a1614333acce021409a3bfe74a88750d4}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!Vehiculo@{Vehiculo}}
+\index{Vehiculo@{Vehiculo}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{Vehiculo()}{Vehiculo()}}
+{\footnotesize\ttfamily simulator.\+Vehiculo.\+Vehiculo (\begin{DoxyParamCaption}\item[{Point}]{init,  }\item[{Point}]{fin,  }\item[{Array\+List$<$ \mbox{\hyperlink{classsimulator_1_1_segmento}{Segmento}} $>$}]{lista\+Segmentos,  }\item[{int}]{id,  }\item[{Semaphore}]{select\+Parking,  }\item[{Semaphore}]{sql,  }\item[{\mbox{\hyperlink{classsimulator_1_1_manager}{Manager}}}]{manager }\end{DoxyParamCaption})}
+
+
+
+Definition at line 47 of file Vehiculo.\+java.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsimulator_1_1_vehiculo_a1614333acce021409a3bfe74a88750d4_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_aca90600bc94ce6dd02ddd4e5b712e687}\label{classsimulator_1_1_vehiculo_aca90600bc94ce6dd02ddd4e5b712e687}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!buscar\+Actual@{buscar\+Actual}}
+\index{buscar\+Actual@{buscar\+Actual}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{buscar\+Actual()}{buscarActual()}}
+{\footnotesize\ttfamily void simulator.\+Vehiculo.\+buscar\+Actual (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This method reserve an segment to a certain vehicle 
+
+Definition at line 88 of file Vehiculo.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_aa59295cc134f0db04e5b822ec7d6d147}\label{classsimulator_1_1_vehiculo_aa59295cc134f0db04e5b822ec7d6d147}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!buscar\+Parking@{buscar\+Parking}}
+\index{buscar\+Parking@{buscar\+Parking}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{buscar\+Parking()}{buscarParking()}}
+{\footnotesize\ttfamily void simulator.\+Vehiculo.\+buscar\+Parking (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This method look for a parking segment. 
+
+Definition at line 109 of file Vehiculo.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_a7dc301ce9a868990dea8e406dd038979}\label{classsimulator_1_1_vehiculo_a7dc301ce9a868990dea8e406dd038979}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!connect@{connect}}
+\index{connect@{connect}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily void simulator.\+Vehiculo.\+connect (\begin{DoxyParamCaption}\item[{String}]{username }\end{DoxyParamCaption})}
+
+This method connects to the selected database 
+
+Definition at line 66 of file Vehiculo.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_aee3cf4905b7d3668f705d8bab550cf78}\label{classsimulator_1_1_vehiculo_aee3cf4905b7d3668f705d8bab550cf78}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!enter\+Alt@{enter\+Alt}}
+\index{enter\+Alt@{enter\+Alt}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{enter\+Alt()}{enterAlt()}}
+{\footnotesize\ttfamily void simulator.\+Vehiculo.\+enter\+Alt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This method simulates the entrance of a vehicle into a vertical segment 
+
+Definition at line 359 of file Vehiculo.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_ae2109a07a4719805b2b22fa2cfc74b9b}\label{classsimulator_1_1_vehiculo_ae2109a07a4719805b2b22fa2cfc74b9b}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!enter\+Next@{enter\+Next}}
+\index{enter\+Next@{enter\+Next}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{enter\+Next()}{enterNext()}}
+{\footnotesize\ttfamily void simulator.\+Vehiculo.\+enter\+Next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This method simulates the entrance of the vehicle into a horizontal segment 
+
+Definition at line 405 of file Vehiculo.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_aa860fe7afa2700e63751b39296a3dbe2}\label{classsimulator_1_1_vehiculo_aa860fe7afa2700e63751b39296a3dbe2}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!entrar\+Parking@{entrar\+Parking}}
+\index{entrar\+Parking@{entrar\+Parking}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{entrar\+Parking()}{entrarParking()}}
+{\footnotesize\ttfamily void simulator.\+Vehiculo.\+entrar\+Parking (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This method simulates the entry into a parking 
+
+Definition at line 180 of file Vehiculo.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_ad6305ffaaa4eee022c07cac7515df015}\label{classsimulator_1_1_vehiculo_ad6305ffaaa4eee022c07cac7515df015}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!get\+Actual@{get\+Actual}}
+\index{get\+Actual@{get\+Actual}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{get\+Actual()}{getActual()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulator_1_1_segmento}{Segmento}} simulator.\+Vehiculo.\+get\+Actual (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 454 of file Vehiculo.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_a4adff38665fbd605cc1aadf42dae9787}\label{classsimulator_1_1_vehiculo_a4adff38665fbd605cc1aadf42dae9787}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!get\+Fin@{get\+Fin}}
+\index{get\+Fin@{get\+Fin}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{get\+Fin()}{getFin()}}
+{\footnotesize\ttfamily Point simulator.\+Vehiculo.\+get\+Fin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 459 of file Vehiculo.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_a12c1abc60bddb033fdd3e04f14bb8314}\label{classsimulator_1_1_vehiculo_a12c1abc60bddb033fdd3e04f14bb8314}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!get\+Objetivo@{get\+Objetivo}}
+\index{get\+Objetivo@{get\+Objetivo}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{get\+Objetivo()}{getObjetivo()}}
+{\footnotesize\ttfamily Point simulator.\+Vehiculo.\+get\+Objetivo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 310 of file Vehiculo.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_ad3da0b0e11fbf762c9efbc02af14791a}\label{classsimulator_1_1_vehiculo_ad3da0b0e11fbf762c9efbc02af14791a}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!get\+Salida@{get\+Salida}}
+\index{get\+Salida@{get\+Salida}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{get\+Salida()}{getSalida()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulator_1_1_segmento}{Segmento}} simulator.\+Vehiculo.\+get\+Salida (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 306 of file Vehiculo.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_afff145cddc29699082dab8c05d18137d}\label{classsimulator_1_1_vehiculo_afff145cddc29699082dab8c05d18137d}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!get\+Select\+Parking@{get\+Select\+Parking}}
+\index{get\+Select\+Parking@{get\+Select\+Parking}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{get\+Select\+Parking()}{getSelectParking()}}
+{\footnotesize\ttfamily Semaphore simulator.\+Vehiculo.\+get\+Select\+Parking (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 173 of file Vehiculo.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_a5dfc609221e17e725449964f7482b109}\label{classsimulator_1_1_vehiculo_a5dfc609221e17e725449964f7482b109}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!get\+Sql@{get\+Sql}}
+\index{get\+Sql@{get\+Sql}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{get\+Sql()}{getSql()}}
+{\footnotesize\ttfamily Semaphore simulator.\+Vehiculo.\+get\+Sql (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 302 of file Vehiculo.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_a7206f5327c1bb0c7e5ce49d526542740}\label{classsimulator_1_1_vehiculo_a7206f5327c1bb0c7e5ce49d526542740}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!llegada@{llegada}}
+\index{llegada@{llegada}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{llegada()}{llegada()}}
+{\footnotesize\ttfamily boolean simulator.\+Vehiculo.\+llegada (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+true if the vehicle arrives to the final destiny 
+\end{DoxyReturn}
+
+
+Definition at line 209 of file Vehiculo.\+java.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsimulator_1_1_vehiculo_a7206f5327c1bb0c7e5ce49d526542740_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_a6180368ea8c35b2e7113a5f2b1368f92}\label{classsimulator_1_1_vehiculo_a6180368ea8c35b2e7113a5f2b1368f92}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!mover@{mover}}
+\index{mover@{mover}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{mover()}{mover()}}
+{\footnotesize\ttfamily void simulator.\+Vehiculo.\+mover (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This method simulates the movement of the vehicles 
+
+Definition at line 137 of file Vehiculo.\+java.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsimulator_1_1_vehiculo_a6180368ea8c35b2e7113a5f2b1368f92_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_a4cbe0a3d742c02919a0c355f42f3e35d}\label{classsimulator_1_1_vehiculo_a4cbe0a3d742c02919a0c355f42f3e35d}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!run@{run}}
+\index{run@{run}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void simulator.\+Vehiculo.\+run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This method is a loop of 0.\+1 seconds where if the vehicle arrives to the final objective it executes the arrival() function otherwise it will execute move() function 
+
+Definition at line 322 of file Vehiculo.\+java.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsimulator_1_1_vehiculo_a4cbe0a3d742c02919a0c355f42f3e35d_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_ae8246a5b77441c21681ffd2033075348}\label{classsimulator_1_1_vehiculo_ae8246a5b77441c21681ffd2033075348}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!set\+Actual@{set\+Actual}}
+\index{set\+Actual@{set\+Actual}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{set\+Actual()}{setActual()}}
+{\footnotesize\ttfamily void simulator.\+Vehiculo.\+set\+Actual (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsimulator_1_1_segmento}{Segmento}}}]{segmento }\end{DoxyParamCaption})}
+
+
+
+Definition at line 472 of file Vehiculo.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_ac31a172023d50e9ac576ffb0f449bfb8}\label{classsimulator_1_1_vehiculo_ac31a172023d50e9ac576ffb0f449bfb8}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!set\+Fin@{set\+Fin}}
+\index{set\+Fin@{set\+Fin}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{set\+Fin()}{setFin()}}
+{\footnotesize\ttfamily void simulator.\+Vehiculo.\+set\+Fin (\begin{DoxyParamCaption}\item[{Point}]{fin }\end{DoxyParamCaption})}
+
+
+
+Definition at line 463 of file Vehiculo.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_a1eb291b75826b406fc1eee91a92b9653}\label{classsimulator_1_1_vehiculo_a1eb291b75826b406fc1eee91a92b9653}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!set\+Objetivo@{set\+Objetivo}}
+\index{set\+Objetivo@{set\+Objetivo}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{set\+Objetivo()}{setObjetivo()}}
+{\footnotesize\ttfamily void simulator.\+Vehiculo.\+set\+Objetivo (\begin{DoxyParamCaption}\item[{Point}]{objetivo }\end{DoxyParamCaption})}
+
+
+
+Definition at line 314 of file Vehiculo.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_a2515527cf1b20dfbd634f6bc54e3f8ad}\label{classsimulator_1_1_vehiculo_a2515527cf1b20dfbd634f6bc54e3f8ad}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!set\+Parking@{set\+Parking}}
+\index{set\+Parking@{set\+Parking}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{set\+Parking()}{setParking()}}
+{\footnotesize\ttfamily void simulator.\+Vehiculo.\+set\+Parking (\begin{DoxyParamCaption}\item[{Point}]{point }\end{DoxyParamCaption})}
+
+
+
+Definition at line 467 of file Vehiculo.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_ac84b60f19a1fcfa901dc0be573edf80f}\label{classsimulator_1_1_vehiculo_ac84b60f19a1fcfa901dc0be573edf80f}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!set\+Pedido\+ID@{set\+Pedido\+ID}}
+\index{set\+Pedido\+ID@{set\+Pedido\+ID}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{set\+Pedido\+I\+D()}{setPedidoID()}}
+{\footnotesize\ttfamily void simulator.\+Vehiculo.\+set\+Pedido\+ID (\begin{DoxyParamCaption}\item[{int}]{pedido\+ID }\end{DoxyParamCaption})}
+
+
+
+Definition at line 298 of file Vehiculo.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_aa917981d13bea186e4016a9a367c8288}\label{classsimulator_1_1_vehiculo_aa917981d13bea186e4016a9a367c8288}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!set\+Producto\+ID@{set\+Producto\+ID}}
+\index{set\+Producto\+ID@{set\+Producto\+ID}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{set\+Producto\+I\+D()}{setProductoID()}}
+{\footnotesize\ttfamily void simulator.\+Vehiculo.\+set\+Producto\+ID (\begin{DoxyParamCaption}\item[{int}]{producto\+ID }\end{DoxyParamCaption})}
+
+
+
+Definition at line 294 of file Vehiculo.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_vehiculo_a74f78a4942efa75589834e4ad4e95fc4}\label{classsimulator_1_1_vehiculo_a74f78a4942efa75589834e4ad4e95fc4}} 
+\index{simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}!try\+Enter\+Alt@{try\+Enter\+Alt}}
+\index{try\+Enter\+Alt@{try\+Enter\+Alt}!simulator\+::\+Vehiculo@{simulator\+::\+Vehiculo}}
+\subsubsection{\texorpdfstring{try\+Enter\+Alt()}{tryEnterAlt()}}
+{\footnotesize\ttfamily boolean simulator.\+Vehiculo.\+try\+Enter\+Alt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+true if the vertical segment is available, otherwise it will return false 
+\end{DoxyReturn}
+
+
+Definition at line 344 of file Vehiculo.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+java/main/java/simulator/\mbox{\hyperlink{_vehiculo_8java}{Vehiculo.\+java}}\end{DoxyCompactItemize}

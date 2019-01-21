@@ -1,0 +1,332 @@
+\hypertarget{classsimulator_1_1_manager}{}\section{simulator.\+Manager Class Reference}
+\label{classsimulator_1_1_manager}\index{simulator.\+Manager@{simulator.\+Manager}}
+
+
+Inheritance diagram for simulator.\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=177pt]{classsimulator_1_1_manager__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for simulator.\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsimulator_1_1_manager__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsimulator_1_1_manager_af97cb12adc0ee7caa9e83f73ee85c04a}{Manager}} (Array\+List$<$ \mbox{\hyperlink{classsimulator_1_1_vehiculo}{Vehiculo}} $>$ lista\+Vehiculos, Semaphore sql, Array\+List$<$ \mbox{\hyperlink{classsimulator_1_1_segmento}{Segmento}} $>$ lista\+Segmentos)
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_manager_adba6b4255dbc64064c6577e4baadbe9a}{connect}} (String username)
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_manager_af238d6fc1282f769de925bf6aa9cdca9}{disconnect}} ()
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_manager_a92b9df5fb7f406bfe8f99cdb8b6ee22a}{entregar}} (int pedido\+ID, int producto\+ID)
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_manager_a318010c8020487c27cc127fdfe75402a}{leer\+Database}} ()
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_manager_a6c22bed4ba7b715b4a4c0326ffd1f8a1}{asignar}} ()
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_manager_ad98ac45d17514772c17a9c65be7d3892}{run}} ()
+\item 
+Array\+List$<$ \mbox{\hyperlink{classsimulator_1_1_vehiculo}{Vehiculo}} $>$ \mbox{\hyperlink{classsimulator_1_1_manager_a55b039767305793c0b904b49fe41cd56}{get\+Lista\+Vehiculos}} ()
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_manager_a8f54c75ba31adb082ffbf25813caad71}{set\+Lista\+Vehiculos}} (Array\+List$<$ \mbox{\hyperlink{classsimulator_1_1_vehiculo}{Vehiculo}} $>$ lista\+Vehiculos)
+\item 
+Array\+List$<$ \mbox{\hyperlink{classsimulator_1_1_segmento}{Segmento}} $>$ \mbox{\hyperlink{classsimulator_1_1_manager_a8d708b20d559aa8fd42c9f963f2dc6d4}{get\+Lista\+Segmentos}} ()
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_manager_af491f7a126893a6436bbd624ffc17ed9}{set\+Lista\+Segmentos}} (Array\+List$<$ \mbox{\hyperlink{classsimulator_1_1_segmento}{Segmento}} $>$ lista\+Segmentos)
+\item 
+Connection \mbox{\hyperlink{classsimulator_1_1_manager_a2a8f351e284baaf0b7ecd92dbf71468b}{get\+Connection}} ()
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_manager_adc747823ff8f856a79a78a30ae6788f9}{set\+Connection}} (Connection connection)
+\item 
+Statement \mbox{\hyperlink{classsimulator_1_1_manager_ad753f8ec42bb1b7a2d5c3b0a5ff7ed99}{get\+Statement}} ()
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_manager_ab4d473d9764b3aab34e02cc10a1e9645}{set\+Statement}} (Statement statement)
+\item 
+String \mbox{\hyperlink{classsimulator_1_1_manager_a74a372ec99052be3ceced43baeedbeac}{get\+Check}} ()
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_manager_aaaf1f38ecbe1e8d2ca7ad20081ab378a}{set\+Check}} (String check)
+\item 
+Array\+List$<$ \mbox{\hyperlink{classsimulator_1_1_pedido}{Pedido}} $>$ \mbox{\hyperlink{classsimulator_1_1_manager_a98f04170b85509ae8f1fe2753dac60ef}{get\+Lista\+Pedidos}} ()
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_manager_a3ac3fa3e9c1e559bbd50df24fe32fe33}{set\+Lista\+Pedidos}} (Array\+List$<$ \mbox{\hyperlink{classsimulator_1_1_pedido}{Pedido}} $>$ lista\+Pedidos)
+\item 
+Array\+List$<$ \mbox{\hyperlink{classsimulator_1_1_pedido}{Pedido}} $>$ \mbox{\hyperlink{classsimulator_1_1_manager_af266ad72ad536f9e58a75a3d070228cf}{get\+Lista\+Pedidos\+Aux}} ()
+\item 
+void \mbox{\hyperlink{classsimulator_1_1_manager_aa41c5e11ec1083566137aa868fea0049}{set\+Lista\+Pedidos\+Aux}} (Array\+List$<$ \mbox{\hyperlink{classsimulator_1_1_pedido}{Pedido}} $>$ lista\+Pedidos\+Aux)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the object M\+A\+N\+A\+G\+ER that has the methods to do the conection and disconection for the database.
+
+\begin{DoxyAuthor}{Author}
+Joseba Carnicero, Aitor Eizmendi, Jon Mugica and Marcos Azkarate 
+\end{DoxyAuthor}
+
+
+Definition at line 20 of file Manager.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsimulator_1_1_manager_af97cb12adc0ee7caa9e83f73ee85c04a}\label{classsimulator_1_1_manager_af97cb12adc0ee7caa9e83f73ee85c04a}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!Manager@{Manager}}
+\index{Manager@{Manager}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{Manager()}{Manager()}}
+{\footnotesize\ttfamily simulator.\+Manager.\+Manager (\begin{DoxyParamCaption}\item[{Array\+List$<$ \mbox{\hyperlink{classsimulator_1_1_vehiculo}{Vehiculo}} $>$}]{lista\+Vehiculos,  }\item[{Semaphore}]{sql,  }\item[{Array\+List$<$ \mbox{\hyperlink{classsimulator_1_1_segmento}{Segmento}} $>$}]{lista\+Segmentos }\end{DoxyParamCaption})}
+
+Parameterized constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em lista\+Vehiculos} & contains an Array\+List of Vehicles \\
+\hline
+{\em sql} & is a Semaphore that it is used to a good synchronization \\
+\hline
+{\em lista\+Segmentos} & is an Array\+List of Segments \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 50 of file Manager.\+java.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsimulator_1_1_manager_af97cb12adc0ee7caa9e83f73ee85c04a_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classsimulator_1_1_manager_a6c22bed4ba7b715b4a4c0326ffd1f8a1}\label{classsimulator_1_1_manager_a6c22bed4ba7b715b4a4c0326ffd1f8a1}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!asignar@{asignar}}
+\index{asignar@{asignar}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{asignar()}{asignar()}}
+{\footnotesize\ttfamily void simulator.\+Manager.\+asignar (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This method assigned different segment according to its priority 
+
+Definition at line 208 of file Manager.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_manager_adba6b4255dbc64064c6577e4baadbe9a}\label{classsimulator_1_1_manager_adba6b4255dbc64064c6577e4baadbe9a}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!connect@{connect}}
+\index{connect@{connect}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily void simulator.\+Manager.\+connect (\begin{DoxyParamCaption}\item[{String}]{username }\end{DoxyParamCaption})}
+
+This method connects to the selected database 
+
+Definition at line 61 of file Manager.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_manager_af238d6fc1282f769de925bf6aa9cdca9}\label{classsimulator_1_1_manager_af238d6fc1282f769de925bf6aa9cdca9}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!disconnect@{disconnect}}
+\index{disconnect@{disconnect}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{disconnect()}{disconnect()}}
+{\footnotesize\ttfamily void simulator.\+Manager.\+disconnect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This method closes the connected to the selected database 
+
+Definition at line 84 of file Manager.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_manager_a92b9df5fb7f406bfe8f99cdb8b6ee22a}\label{classsimulator_1_1_manager_a92b9df5fb7f406bfe8f99cdb8b6ee22a}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!entregar@{entregar}}
+\index{entregar@{entregar}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{entregar()}{entregar()}}
+{\footnotesize\ttfamily void simulator.\+Manager.\+entregar (\begin{DoxyParamCaption}\item[{int}]{pedido\+ID,  }\item[{int}]{producto\+ID }\end{DoxyParamCaption})}
+
+Parameterized constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & pedido\+ID describes the Id a certain order has \\
+\hline
+{\em int} & producto\+ID describes the Id a certain product has\\
+\hline
+\end{DoxyParams}
+This method delivers all the products of a new order and change the status of the order into \char`\"{}\+Finished\char`\"{} 
+
+Definition at line 114 of file Manager.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_manager_a74a372ec99052be3ceced43baeedbeac}\label{classsimulator_1_1_manager_a74a372ec99052be3ceced43baeedbeac}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!get\+Check@{get\+Check}}
+\index{get\+Check@{get\+Check}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{get\+Check()}{getCheck()}}
+{\footnotesize\ttfamily String simulator.\+Manager.\+get\+Check (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 341 of file Manager.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_manager_a2a8f351e284baaf0b7ecd92dbf71468b}\label{classsimulator_1_1_manager_a2a8f351e284baaf0b7ecd92dbf71468b}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!get\+Connection@{get\+Connection}}
+\index{get\+Connection@{get\+Connection}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{get\+Connection()}{getConnection()}}
+{\footnotesize\ttfamily Connection simulator.\+Manager.\+get\+Connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 325 of file Manager.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_manager_a98f04170b85509ae8f1fe2753dac60ef}\label{classsimulator_1_1_manager_a98f04170b85509ae8f1fe2753dac60ef}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!get\+Lista\+Pedidos@{get\+Lista\+Pedidos}}
+\index{get\+Lista\+Pedidos@{get\+Lista\+Pedidos}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{get\+Lista\+Pedidos()}{getListaPedidos()}}
+{\footnotesize\ttfamily Array\+List$<$\mbox{\hyperlink{classsimulator_1_1_pedido}{Pedido}}$>$ simulator.\+Manager.\+get\+Lista\+Pedidos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 349 of file Manager.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_manager_af266ad72ad536f9e58a75a3d070228cf}\label{classsimulator_1_1_manager_af266ad72ad536f9e58a75a3d070228cf}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!get\+Lista\+Pedidos\+Aux@{get\+Lista\+Pedidos\+Aux}}
+\index{get\+Lista\+Pedidos\+Aux@{get\+Lista\+Pedidos\+Aux}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{get\+Lista\+Pedidos\+Aux()}{getListaPedidosAux()}}
+{\footnotesize\ttfamily Array\+List$<$\mbox{\hyperlink{classsimulator_1_1_pedido}{Pedido}}$>$ simulator.\+Manager.\+get\+Lista\+Pedidos\+Aux (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 357 of file Manager.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_manager_a8d708b20d559aa8fd42c9f963f2dc6d4}\label{classsimulator_1_1_manager_a8d708b20d559aa8fd42c9f963f2dc6d4}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!get\+Lista\+Segmentos@{get\+Lista\+Segmentos}}
+\index{get\+Lista\+Segmentos@{get\+Lista\+Segmentos}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{get\+Lista\+Segmentos()}{getListaSegmentos()}}
+{\footnotesize\ttfamily Array\+List$<$\mbox{\hyperlink{classsimulator_1_1_segmento}{Segmento}}$>$ simulator.\+Manager.\+get\+Lista\+Segmentos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 317 of file Manager.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_manager_a55b039767305793c0b904b49fe41cd56}\label{classsimulator_1_1_manager_a55b039767305793c0b904b49fe41cd56}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!get\+Lista\+Vehiculos@{get\+Lista\+Vehiculos}}
+\index{get\+Lista\+Vehiculos@{get\+Lista\+Vehiculos}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{get\+Lista\+Vehiculos()}{getListaVehiculos()}}
+{\footnotesize\ttfamily Array\+List$<$\mbox{\hyperlink{classsimulator_1_1_vehiculo}{Vehiculo}}$>$ simulator.\+Manager.\+get\+Lista\+Vehiculos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 309 of file Manager.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_manager_ad753f8ec42bb1b7a2d5c3b0a5ff7ed99}\label{classsimulator_1_1_manager_ad753f8ec42bb1b7a2d5c3b0a5ff7ed99}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!get\+Statement@{get\+Statement}}
+\index{get\+Statement@{get\+Statement}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{get\+Statement()}{getStatement()}}
+{\footnotesize\ttfamily Statement simulator.\+Manager.\+get\+Statement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 333 of file Manager.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_manager_a318010c8020487c27cc127fdfe75402a}\label{classsimulator_1_1_manager_a318010c8020487c27cc127fdfe75402a}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!leer\+Database@{leer\+Database}}
+\index{leer\+Database@{leer\+Database}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{leer\+Database()}{leerDatabase()}}
+{\footnotesize\ttfamily void simulator.\+Manager.\+leer\+Database (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This method reads from the database the new orders and 
+
+Definition at line 155 of file Manager.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_manager_ad98ac45d17514772c17a9c65be7d3892}\label{classsimulator_1_1_manager_ad98ac45d17514772c17a9c65be7d3892}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!run@{run}}
+\index{run@{run}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void simulator.\+Manager.\+run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This method display the actual position of the autonomous vehicles and the status of the different workstations 
+
+Definition at line 282 of file Manager.\+java.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsimulator_1_1_manager_ad98ac45d17514772c17a9c65be7d3892_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classsimulator_1_1_manager_aaaf1f38ecbe1e8d2ca7ad20081ab378a}\label{classsimulator_1_1_manager_aaaf1f38ecbe1e8d2ca7ad20081ab378a}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!set\+Check@{set\+Check}}
+\index{set\+Check@{set\+Check}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{set\+Check()}{setCheck()}}
+{\footnotesize\ttfamily void simulator.\+Manager.\+set\+Check (\begin{DoxyParamCaption}\item[{String}]{check }\end{DoxyParamCaption})}
+
+
+
+Definition at line 345 of file Manager.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_manager_adc747823ff8f856a79a78a30ae6788f9}\label{classsimulator_1_1_manager_adc747823ff8f856a79a78a30ae6788f9}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!set\+Connection@{set\+Connection}}
+\index{set\+Connection@{set\+Connection}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{set\+Connection()}{setConnection()}}
+{\footnotesize\ttfamily void simulator.\+Manager.\+set\+Connection (\begin{DoxyParamCaption}\item[{Connection}]{connection }\end{DoxyParamCaption})}
+
+
+
+Definition at line 329 of file Manager.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_manager_a3ac3fa3e9c1e559bbd50df24fe32fe33}\label{classsimulator_1_1_manager_a3ac3fa3e9c1e559bbd50df24fe32fe33}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!set\+Lista\+Pedidos@{set\+Lista\+Pedidos}}
+\index{set\+Lista\+Pedidos@{set\+Lista\+Pedidos}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{set\+Lista\+Pedidos()}{setListaPedidos()}}
+{\footnotesize\ttfamily void simulator.\+Manager.\+set\+Lista\+Pedidos (\begin{DoxyParamCaption}\item[{Array\+List$<$ \mbox{\hyperlink{classsimulator_1_1_pedido}{Pedido}} $>$}]{lista\+Pedidos }\end{DoxyParamCaption})}
+
+
+
+Definition at line 353 of file Manager.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_manager_aa41c5e11ec1083566137aa868fea0049}\label{classsimulator_1_1_manager_aa41c5e11ec1083566137aa868fea0049}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!set\+Lista\+Pedidos\+Aux@{set\+Lista\+Pedidos\+Aux}}
+\index{set\+Lista\+Pedidos\+Aux@{set\+Lista\+Pedidos\+Aux}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{set\+Lista\+Pedidos\+Aux()}{setListaPedidosAux()}}
+{\footnotesize\ttfamily void simulator.\+Manager.\+set\+Lista\+Pedidos\+Aux (\begin{DoxyParamCaption}\item[{Array\+List$<$ \mbox{\hyperlink{classsimulator_1_1_pedido}{Pedido}} $>$}]{lista\+Pedidos\+Aux }\end{DoxyParamCaption})}
+
+
+
+Definition at line 361 of file Manager.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_manager_af491f7a126893a6436bbd624ffc17ed9}\label{classsimulator_1_1_manager_af491f7a126893a6436bbd624ffc17ed9}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!set\+Lista\+Segmentos@{set\+Lista\+Segmentos}}
+\index{set\+Lista\+Segmentos@{set\+Lista\+Segmentos}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{set\+Lista\+Segmentos()}{setListaSegmentos()}}
+{\footnotesize\ttfamily void simulator.\+Manager.\+set\+Lista\+Segmentos (\begin{DoxyParamCaption}\item[{Array\+List$<$ \mbox{\hyperlink{classsimulator_1_1_segmento}{Segmento}} $>$}]{lista\+Segmentos }\end{DoxyParamCaption})}
+
+
+
+Definition at line 321 of file Manager.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_manager_a8f54c75ba31adb082ffbf25813caad71}\label{classsimulator_1_1_manager_a8f54c75ba31adb082ffbf25813caad71}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!set\+Lista\+Vehiculos@{set\+Lista\+Vehiculos}}
+\index{set\+Lista\+Vehiculos@{set\+Lista\+Vehiculos}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{set\+Lista\+Vehiculos()}{setListaVehiculos()}}
+{\footnotesize\ttfamily void simulator.\+Manager.\+set\+Lista\+Vehiculos (\begin{DoxyParamCaption}\item[{Array\+List$<$ \mbox{\hyperlink{classsimulator_1_1_vehiculo}{Vehiculo}} $>$}]{lista\+Vehiculos }\end{DoxyParamCaption})}
+
+
+
+Definition at line 313 of file Manager.\+java.
+
+\mbox{\Hypertarget{classsimulator_1_1_manager_ab4d473d9764b3aab34e02cc10a1e9645}\label{classsimulator_1_1_manager_ab4d473d9764b3aab34e02cc10a1e9645}} 
+\index{simulator\+::\+Manager@{simulator\+::\+Manager}!set\+Statement@{set\+Statement}}
+\index{set\+Statement@{set\+Statement}!simulator\+::\+Manager@{simulator\+::\+Manager}}
+\subsubsection{\texorpdfstring{set\+Statement()}{setStatement()}}
+{\footnotesize\ttfamily void simulator.\+Manager.\+set\+Statement (\begin{DoxyParamCaption}\item[{Statement}]{statement }\end{DoxyParamCaption})}
+
+
+
+Definition at line 337 of file Manager.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+java/main/java/simulator/\mbox{\hyperlink{_manager_8java}{Manager.\+java}}\end{DoxyCompactItemize}

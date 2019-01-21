@@ -1,0 +1,10 @@
+<map id="test.VehiclesTest.moveTest3" name="test.VehiclesTest.moveTest3">
+<area shape="rect" id="node2" href="$classsimulator_1_1_lista_segmento.html#ab699a3169c41d7baac0f86e47c0df66e" title="simulator.ListaSegmento.get\lListaSegmentos" alt="" coords="243,5,431,47"/>
+<area shape="rect" id="node3" href="$classsimulator_1_1_vehiculo.html#ae8246a5b77441c21681ffd2033075348" title="simulator.Vehiculo.setActual" alt="" coords="243,71,431,98"/>
+<area shape="rect" id="node4" href="$classsimulator_1_1_vehiculo.html#ac31a172023d50e9ac576ffb0f449bfb8" title="simulator.Vehiculo.setFin" alt="" coords="252,122,421,149"/>
+<area shape="rect" id="node5" href="$classsimulator_1_1_vehiculo.html#a6180368ea8c35b2e7113a5f2b1368f92" title="simulator.Vehiculo.mover" alt="" coords="253,173,420,199"/>
+<area shape="rect" id="node9" href="$classsimulator_1_1_vehiculo.html#ad6305ffaaa4eee022c07cac7515df015" title="simulator.Vehiculo.getActual" alt="" coords="243,223,431,250"/>
+<area shape="rect" id="node6" href="$classsimulator_1_1_vehiculo.html#a74f78a4942efa75589834e4ad4e95fc4" title="simulator.Vehiculo.tryEnterAlt" alt="" coords="479,122,673,149"/>
+<area shape="rect" id="node7" href="$classsimulator_1_1_vehiculo.html#aee3cf4905b7d3668f705d8bab550cf78" title="simulator.Vehiculo.enterAlt" alt="" coords="487,173,665,199"/>
+<area shape="rect" id="node8" href="$classsimulator_1_1_vehiculo.html#ae2109a07a4719805b2b22fa2cfc74b9b" title="simulator.Vehiculo.enterNext" alt="" coords="481,223,671,250"/>
+</map>

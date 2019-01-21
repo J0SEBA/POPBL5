@@ -1,0 +1,5 @@
+<map id="simulator.Vehiculo.llegada" name="simulator.Vehiculo.llegada">
+<area shape="rect" id="node2" href="$classsimulator_1_1_manager.html#a92b9df5fb7f406bfe8f99cdb8b6ee22a" title="simulator.Manager.entregar" alt="" coords="228,5,408,32"/>
+<area shape="rect" id="node3" href="$classsimulator_1_1_vehiculo.html#aa59295cc134f0db04e5b822ec7d6d147" title="simulator.Vehiculo.buscar\lParking" alt="" coords="232,57,404,98"/>
+<area shape="rect" id="node4" href="$classsimulator_1_1_vehiculo.html#aa860fe7afa2700e63751b39296a3dbe2" title="simulator.Vehiculo.entrar\lParking" alt="" coords="235,122,401,163"/>
+</map>

@@ -1,0 +1,16 @@
+<map id="test.VehiclesTest.llegadaSalidaTest1" name="test.VehiclesTest.llegadaSalidaTest1">
+<area shape="rect" id="node2" href="$classsimulator_1_1_vehiculo.html#ae8246a5b77441c21681ffd2033075348" title="simulator.Vehiculo.setActual" alt="" coords="235,5,423,32"/>
+<area shape="rect" id="node3" href="$classsimulator_1_1_vehiculo.html#ad3da0b0e11fbf762c9efbc02af14791a" title="simulator.Vehiculo.getSalida" alt="" coords="235,56,422,83"/>
+<area shape="rect" id="node4" href="$classsimulator_1_1_vehiculo.html#aa917981d13bea186e4016a9a367c8288" title="simulator.Vehiculo.setProductoID" alt="" coords="221,107,436,133"/>
+<area shape="rect" id="node5" href="$classsimulator_1_1_vehiculo.html#ac84b60f19a1fcfa901dc0be573edf80f" title="simulator.Vehiculo.setPedidoID" alt="" coords="227,157,430,184"/>
+<area shape="rect" id="node6" href="$classsimulator_1_1_segmento.html#aacd44ec934de39929837f8f3818e2e3b" title="simulator.Segmento.getWs" alt="" coords="239,208,419,235"/>
+<area shape="rect" id="node7" href="$classsimulator_1_1_workstation.html#abc348d8ecea62cb7893d861ccc041c86" title="simulator.Workstation.set\lOcupado" alt="" coords="243,259,414,301"/>
+<area shape="rect" id="node8" href="$classsimulator_1_1_workstation.html#af1001364022448a27a66b864376cdeff" title="simulator.Workstation.get\lEntry" alt="" coords="243,325,414,366"/>
+<area shape="rect" id="node9" href="$classsimulator_1_1_vehiculo.html#a5dfc609221e17e725449964f7482b109" title="simulator.Vehiculo.getSql" alt="" coords="243,391,414,417"/>
+<area shape="rect" id="node10" href="$classsimulator_1_1_workstation.html#a0d389f9b0ca28ff6648467370afdb858" title="simulator.Workstation.getExit" alt="" coords="231,441,426,468"/>
+<area shape="rect" id="node11" href="$classsimulator_1_1_vehiculo.html#afff145cddc29699082dab8c05d18137d" title="simulator.Vehiculo.getSelect\lParking" alt="" coords="235,493,423,534"/>
+<area shape="rect" id="node12" href="$classsimulator_1_1_vehiculo.html#a7206f5327c1bb0c7e5ce49d526542740" title="simulator.Vehiculo.llegada" alt="" coords="241,559,416,585"/>
+<area shape="rect" id="node13" href="$classsimulator_1_1_manager.html#a92b9df5fb7f406bfe8f99cdb8b6ee22a" title="simulator.Manager.entregar" alt="" coords="484,500,664,527"/>
+<area shape="rect" id="node14" href="$classsimulator_1_1_vehiculo.html#aa59295cc134f0db04e5b822ec7d6d147" title="simulator.Vehiculo.buscar\lParking" alt="" coords="488,551,660,593"/>
+<area shape="rect" id="node15" href="$classsimulator_1_1_vehiculo.html#aa860fe7afa2700e63751b39296a3dbe2" title="simulator.Vehiculo.entrar\lParking" alt="" coords="491,617,657,658"/>
+</map>

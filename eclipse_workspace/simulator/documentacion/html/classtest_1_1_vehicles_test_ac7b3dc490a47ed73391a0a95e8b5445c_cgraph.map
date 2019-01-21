@@ -1,0 +1,5 @@
+<map id="test.VehiclesTest.enterNextTest" name="test.VehiclesTest.enterNextTest">
+<area shape="rect" id="node2" href="$classsimulator_1_1_vehiculo.html#ae8246a5b77441c21681ffd2033075348" title="simulator.Vehiculo.setActual" alt="" coords="262,5,450,32"/>
+<area shape="rect" id="node3" href="$classsimulator_1_1_vehiculo.html#ae2109a07a4719805b2b22fa2cfc74b9b" title="simulator.Vehiculo.enterNext" alt="" coords="261,56,451,83"/>
+<area shape="rect" id="node4" href="$classsimulator_1_1_vehiculo.html#ad6305ffaaa4eee022c07cac7515df015" title="simulator.Vehiculo.getActual" alt="" coords="262,107,450,133"/>
+</map>
